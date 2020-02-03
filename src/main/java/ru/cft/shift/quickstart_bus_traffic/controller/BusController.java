@@ -16,13 +16,9 @@ public class BusController {
       path = "/bus/add",
       consumes = "application/x-www-form-urlencoded",
       produces = "application/json"
-  ) public BusEntity add(
-      @RequestParam(name = "number") String number,
-      @RequestParam(name = "busModel") BusModelEntity busModel
-  ) {
+  ) public BusEntity add(@RequestParam(name = "number") String number) {
     BusEntity bus = new BusEntity();
     bus.setNumber(number);
-    bus.setModel(busModel);
 
     return busService.add(bus);
   }
