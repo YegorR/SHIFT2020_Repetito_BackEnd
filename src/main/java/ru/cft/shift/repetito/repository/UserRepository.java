@@ -1,18 +1,18 @@
 package ru.cft.shift.repetito.repository;
 
-import ru.cft.shift.repetito.entity.User;
-import ru.cft.shift.repetito.service.UserCriteria;
+import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.params.UserParamsRequest;
 
 import java.util.List;
 
 public interface UserRepository {
-    List<User> findUsers(UserCriteria userCriteria);
+    List<UserEntity> findUsers(UserParamsRequest userParamsRequest);
 
-    User findUserById(long id);
+    UserEntity findUserById(long id);
 
-    User updateUser(User user);
+    UserEntity updateUser(UserEntity user);
 
     void deleteUserById(long id);
 
-    User createUser(User user);
+    UserEntity createUser(UserEntity user);
 }

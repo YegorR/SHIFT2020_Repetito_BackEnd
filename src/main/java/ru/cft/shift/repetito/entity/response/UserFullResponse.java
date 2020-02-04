@@ -1,8 +1,23 @@
 package ru.cft.shift.repetito.entity.response;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import ru.cft.shift.repetito.entity.UserEntity;
+
 import java.util.List;
 
 public class UserFullResponse {
+    public UserFullResponse(UserEntity user){
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.paronym = user.getParonym();
+        this.faculty = user.getFaculty();
+        this.course = user.getCourse();
+        this.subjects = user.getSubjects();
+        this.degree = user.getDegree();
+        this.about = user.getAbout();
+    }
     private Long id;
     private String firstName;
     private String lastName;

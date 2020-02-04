@@ -1,6 +1,9 @@
 package ru.cft.shift.repetito.entity;
 
-import ru.cft.shift.repetito.params.UserParamsRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.cft.shift.repetito.entity.response.UserFullResponse;
+import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
+import ru.cft.shift.repetito.params.UserJSONRequest;
 
 import java.util.List;
 import javax.persistence.*;
@@ -8,7 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
@@ -33,7 +36,7 @@ public class User {
     private String faculty;
 
     @Column(name = "course")
-    private int course;
+    private String course;
 
     @Column(name = "subjects")
     private List<String> subjects;
@@ -53,7 +56,7 @@ public class User {
     @Column(name = "avg_mark")
     private int avgMark;
 
-    public User(UserParamsRequest userParamsRequest){
+    public UserEntity(UserJSONRequest userParamsRequest){
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
         this.paronym = userParamsRequest.getParonym();
@@ -120,11 +123,11 @@ public class User {
         this.faculty = faculty;
     }
 
-    public int getCourse() {
+    public String getCourse() {
         return course;
     }
 
-    public void setCourse(int course) {
+    public void setCourse(String course) {
         this.course = course;
     }
 
@@ -175,8 +178,4 @@ public class User {
     public void setAvgMark(int avgMark) {
         this.avgMark = avgMark;
     }
-
-
-
-
 }

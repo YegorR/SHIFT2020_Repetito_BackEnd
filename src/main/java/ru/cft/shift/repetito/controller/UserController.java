@@ -1,32 +1,32 @@
 package ru.cft.shift.repetito.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.cft.shift.repetito.entity.User;
+import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.service.UserService;
 import ru.cft.shift.repetito.entity.response.UserFullResponse;
 import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
-import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.params.UserJSONRequest;
 
 import java.util.List;
 
 @RestController
 public class UserController {
 
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @RequestMapping(
             method=RequestMethod.GET,
             path="/user",
             consumes="application/x-www-form-urlencoded",
             produces="application/json"
-    ) public UserSimpleResponse get (
-            @RequestParam (name = "onlyTeacher", defaultValue = "false") boolean onlyTeacher,
-            @RequestParam (name = "faculty", defaultValue = "null") String faculty,
-            @RequestParam (name = "course", defaultValue = "null") int course,
-            @RequestParam (name= "subject", defaultValue = "null") List<String> subject,
-            @RequestParam (name="degree", defaultValue = "null") String degree,
-            @RequestParam (name = "search", defaultValue = "null") String search,
-            @RequestParam (name = "limit", defaultValue = "10") int limit,
-            @RequestParam (name = "offset", defaultValue = "0") int offset
-            ) {
-        return userService.get(onlyTeacher, faculty, course, subject, degree, search, limit, offset);
+    ) public List<UserSimpleResponse> get(@RequestParam UserParamsRequest userParamsRequest) {
+        return userService.get(userParamsRequest);
     }
 
     @RequestMapping(
@@ -34,7 +34,7 @@ public class UserController {
             path="/user/{id}",
             consumes = "application/x-www-form-urlencoded",
             produces="application/json"
-    ) public UserFullResponse get (@PathVariable(name = "id") Long id) {
+    ) public UserFullResponse get(@PathVariable(name = "id") Long id) {
         return userService.get(id);
     }
 
@@ -43,8 +43,8 @@ public class UserController {
             path="/user",
             consumes = "application/json",
             produces = "application/json"
-    ) public User add(@RequestBody UserParamsRequest userParamsRequest) {
-        User user  = new User(userParamsRequest);
+    ) public UserEntity add(@RequestBody UserJSONRequest userJSONRequest) {
+        UserEntity user  = new UserEntity(userJSONRequest);
         return userService.add(user);
     }
 
@@ -53,10 +53,19 @@ public class UserController {
             path="/user/{id}",
             consumes = "application/json",
             produces = "application/json"
-    ) public User edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable (name="id") Long id){
-        User user = new User(userParamsRequest);
+    ) public UserEntity edit(@RequestBody UserJSONRequest userParamsRequest, @PathVariable (name="id") Long id){
+        UserEntity user = new UserEntity(userParamsRequest);
         user.setId(id);
         return userService.edit(user);
+    }
+
+    @RequestMapping(
+            method=RequestMethod.DELETE,
+            path="/user/{id}",
+            consumes = "application/x-www-form-urlencoded",
+            produces = "application/json"
+    ) public UserEntity delete(@PathVariable (name="id") Long id){
+        return userService.delete(id);
     }
 
 }
