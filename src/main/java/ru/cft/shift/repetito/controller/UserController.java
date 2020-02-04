@@ -1,22 +1,27 @@
 package ru.cft.shift.repetito.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.entity.response.UserFullResponse;
 import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.service.IUserService;
 
 import java.util.List;
 
 @RestController
 public class UserController {
 
+    @Autowired
+    private IUserService userService;
+
     @RequestMapping(
             method=RequestMethod.GET,
             path="/user",
             consumes="application/x-www-form-urlencoded",
             produces="application/json"
-    ) public UserSimpleResponse get (
+    ) public List<UserSimpleResponse> get (
             @RequestParam (name = "onlyTeacher", defaultValue = "false") boolean onlyTeacher,
             @RequestParam (name = "faculty", defaultValue = "null") String faculty,
             @RequestParam (name = "course", defaultValue = "null") int course,

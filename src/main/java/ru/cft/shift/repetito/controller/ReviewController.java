@@ -1,17 +1,23 @@
 package ru.cft.shift.repetito.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.ReviewEntity;
+import ru.cft.shift.repetito.service.IReviewService;
+
+import java.util.List;
 
 @RestController
 public class ReviewController {
+    @Autowired
+    private IReviewService reviewService;
 
     @RequestMapping(
             method=RequestMethod.GET,
             path="/user/{id}/review",
             consumes="application/x-www-form-urlencoded",
             produces = "application/json"
-    ) public ReviewEntity get(@PathVariable (name="id") Long id) {
+    ) public List<ReviewEntity> get(@PathVariable (name="id") Long id) {
         return reviewService.get(id);
     }
 
