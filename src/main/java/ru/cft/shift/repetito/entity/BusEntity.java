@@ -1,4 +1,4 @@
-package ru.cft.shift.quickstart_bus_traffic.entity;
+package ru.cft.shift.repetito.entity;
 
 import java.util.HashSet;
 import java.util.Objects;

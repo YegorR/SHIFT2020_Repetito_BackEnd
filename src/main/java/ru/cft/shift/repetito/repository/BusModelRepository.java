@@ -1,7 +1,7 @@
-package ru.cft.shift.quickstart_bus_traffic.repository;
+package ru.cft.shift.repetito.repository;
 
 import org.springframework.stereotype.Repository;
-import ru.cft.shift.quickstart_bus_traffic.entity.BusModelEntity;
+import ru.cft.shift.repetito.entity.BusModelEntity;
 
 import java.util.HashMap;
 import java.util.Map;
