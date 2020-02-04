@@ -1,7 +1,7 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.web.bind.annotation.*;
-import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.entity.User;
 import ru.cft.shift.repetito.entity.response.UserFullResponse;
 import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.UserParamsRequest;
@@ -43,8 +43,8 @@ public class UserController {
             path="/user",
             consumes = "application/json",
             produces = "application/json"
-    ) public UserEntity add(@RequestBody UserParamsRequest userParamsRequest) {
-        UserEntity user  = new UserEntity(userParamsRequest);
+    ) public User add(@RequestBody UserParamsRequest userParamsRequest) {
+        User user  = new User(userParamsRequest);
         return userService.add(user);
     }
 
@@ -53,8 +53,8 @@ public class UserController {
             path="/user/{id}",
             consumes = "application/json",
             produces = "application/json"
-    ) public UserEntity edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable (name="id") Long id){
-        UserEntity user = new UserEntity(userParamsRequest);
+    ) public User edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable (name="id") Long id){
+        User user = new User(userParamsRequest);
         user.setId(id);
         return userService.edit(user);
     }

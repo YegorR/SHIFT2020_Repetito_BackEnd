@@ -4,13 +4,11 @@ import ru.cft.shift.repetito.params.UserParamsRequest;
 
 import java.util.List;
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
@@ -55,7 +53,7 @@ public class UserEntity {
     @Column(name = "avg_mark")
     private int avgMark;
 
-    public UserEntity(UserParamsRequest userParamsRequest){
+    public User(UserParamsRequest userParamsRequest){
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
         this.paronym = userParamsRequest.getParonym();
