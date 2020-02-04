@@ -1,4 +1,4 @@
-package ru.cft.shift.quickstart_bus_traffic.params;
+package ru.cft.shift.repetito.params;
 
 import java.util.ArrayList;
 import java.util.List;
