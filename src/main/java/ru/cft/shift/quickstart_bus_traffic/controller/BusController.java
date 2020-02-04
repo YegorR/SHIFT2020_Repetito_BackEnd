@@ -19,10 +19,9 @@ public class BusController {
   ) public BusEntity add(@RequestParam(name = "number") String number) {
     BusEntity bus = new BusEntity();
     bus.setNumber(number);
-
     return busService.add(bus);
   }
-
+dfgfdgdfgdf
   @RequestMapping(method = RequestMethod.GET, path = "/bus/{id}", produces = "application/json")
   public BusEntity get(@PathVariable(name = "id") Long id) {
     return busService.get(id);
