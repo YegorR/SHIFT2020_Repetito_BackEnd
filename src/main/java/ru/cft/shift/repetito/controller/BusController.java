@@ -18,7 +18,7 @@ public class BusController {
   ) public BusEntity add(@RequestParam(name = "number") String number) {
     BusEntity bus = new BusEntity();
     bus.setNumber(number);
-fdsfd
+fd
     return busService.add(bus);
   }
 
