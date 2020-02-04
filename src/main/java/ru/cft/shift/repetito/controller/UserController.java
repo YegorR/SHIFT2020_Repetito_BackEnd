@@ -25,14 +25,18 @@ public class UserController {
             @RequestParam (name = "search", defaultValue = "null") String search,
             @RequestParam (name = "limit", defaultValue = "10") int limit,
             @RequestParam (name = "offset", defaultValue = "0") int offset
-            ) {return userService.get(onlyTeacher, faculty, course, subject, degree, search, limit, offset);}
+            ) {
+        return userService.get(onlyTeacher, faculty, course, subject, degree, search, limit, offset);
+    }
 
     @RequestMapping(
             method=RequestMethod.GET,
             path="/user/{id}",
             consumes = "application/x-www-form-urlencoded",
             produces="application/json"
-    ) public UserFullResponse get (@PathVariable(name = "id") Long id) { return userService.get(id);}
+    ) public UserFullResponse get (@PathVariable(name = "id") Long id) {
+        return userService.get(id);
+    }
 
     @RequestMapping(
             method=RequestMethod.POST,

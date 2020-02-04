@@ -46,6 +46,15 @@ public class UserEntity {
     @Column(name = "about")
     private String about;
 
+    @Column(name = "is_teacher")
+    private Boolean isTeacher;
+
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "avg_mark")
+    private int avgMark;
+
     public UserEntity(UserParamsRequest userParamsRequest){
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
@@ -169,9 +178,7 @@ public class UserEntity {
         this.avgMark = avgMark;
     }
 
-    private Boolean isTeacher;
-    private int price;
-    private int avgMark;
+
 
 
 }
