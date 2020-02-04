@@ -1,12 +1,9 @@
 package ru.cft.shift.repetito.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.cft.shift.repetito.entity.BusEntity;
-import ru.cft.shift.repetito.entity.BusModelEntity;
-import ru.cft.shift.repetito.service.IBusService;
+import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.entity.response.UserFullResponse;
+import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.UserParamsRequest;
 
 import java.util.List;
@@ -28,22 +25,26 @@ public class UserController {
             @RequestParam (name = "search", defaultValue = "null") String search,
             @RequestParam (name = "limit", defaultValue = "10") int limit,
             @RequestParam (name = "offset", defaultValue = "0") int offset
-            ) {return userService.get(onlyTeacher, faculty, course, subject, degree, search, limit, offset);}
+            ) {
+        return userService.get(onlyTeacher, faculty, course, subject, degree, search, limit, offset);
+    }
 
     @RequestMapping(
             method=RequestMethod.GET,
             path="/user/{id}",
             consumes = "application/x-www-form-urlencoded",
             produces="application/json"
-    ) public UserFullResponse get (@PathVariable(name = "id") Long id) { return userService.get(id);}
+    ) public UserFullResponse get (@PathVariable(name = "id") Long id) {
+        return userService.get(id);
+    }
 
     @RequestMapping(
             method=RequestMethod.POST,
             path="/user",
             consumes = "application/json",
             produces = "application/json"
-    ) public User add(@RequestBody UserParamsRequest userParamsRequest) {
-        User user  = new User(userParamsRequest);
+    ) public UserEntity add(@RequestBody UserParamsRequest userParamsRequest) {
+        UserEntity user  = new UserEntity(userParamsRequest);
         return userService.add(user);
     }
 
@@ -52,8 +53,8 @@ public class UserController {
             path="/user/{id}",
             consumes = "application/json",
             produces = "application/json"
-    ) public User edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable (name="id") Long id){
-        User user = new User(userParamsRequest);
+    ) public UserEntity edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable (name="id") Long id){
+        UserEntity user = new UserEntity(userParamsRequest);
         user.setId(id);
         return userService.edit(user);
     }
