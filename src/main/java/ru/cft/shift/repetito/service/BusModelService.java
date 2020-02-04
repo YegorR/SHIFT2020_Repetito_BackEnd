@@ -1,9 +1,9 @@
-package ru.cft.shift.quickstart_bus_traffic.service;
+package ru.cft.shift.repetito.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.cft.shift.quickstart_bus_traffic.entity.BusModelEntity;
-import ru.cft.shift.quickstart_bus_traffic.repository.IBusModelRepository;
+import ru.cft.shift.repetito.entity.BusModelEntity;
+import ru.cft.shift.repetito.repository.IBusModelRepository;
 
 @Service
 public class BusModelService implements IBusModelService {

@@ -1,4 +1,4 @@
-package ru.cft.shift.quickstart_bus_traffic;
+package ru.cft.shift.repetito;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

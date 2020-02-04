@@ -1,10 +1,9 @@
-package ru.cft.shift.quickstart_bus_traffic.controller;
+package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.cft.shift.quickstart_bus_traffic.entity.BusEntity;
-import ru.cft.shift.quickstart_bus_traffic.entity.BusModelEntity;
-import ru.cft.shift.quickstart_bus_traffic.service.IBusService;
+import ru.cft.shift.repetito.entity.BusEntity;
+import ru.cft.shift.repetito.service.IBusService;
 
 @RestController
 public class BusController {
