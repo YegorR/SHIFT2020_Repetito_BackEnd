@@ -11,9 +11,11 @@ public interface UserService {
 
     UserFullResponse getUserById(Long id);
 
-    List<UserSimpleResponse> getUserList(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset);
+    /*List<UserSimpleResponse> getUserList(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset);*/
 
     UserEntity editUser(UserEntity user);
+
+    UserEntity getUserByEmailAndPassword(String email, String password);
 
     void deleteUser(Long id);
 
