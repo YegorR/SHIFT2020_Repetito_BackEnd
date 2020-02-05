@@ -13,6 +13,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/login")
 public class AuthenticationController {
+    @RequestMapping("")
     public LoginResultResponse login(LoginFormRequest loginFormRequest, HttpServletResponse response) {
         LoginResultResponse loginResultResponse = new LoginResultResponse();
         loginResultResponse.setSuccessful(true);
