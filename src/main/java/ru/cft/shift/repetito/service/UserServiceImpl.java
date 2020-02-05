@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserEntity edit(UserEntity user) {
-        add(user);
+        return add(user);
     }
 
     public void delete(Long id){

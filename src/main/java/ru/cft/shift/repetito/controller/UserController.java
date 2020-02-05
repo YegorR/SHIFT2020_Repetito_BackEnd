@@ -17,7 +17,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService = new UserService();
+    private UserService userService;
 
     @RequestMapping(
             method = RequestMethod.GET,

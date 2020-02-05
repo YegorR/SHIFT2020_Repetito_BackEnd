@@ -23,7 +23,7 @@ public class UserFullResponse {
     private String lastName;
     private String paronym;
     private String faculty;
-    private String course;
+    private int course;
     private List<String> subjects;
     private String degree;
     private String about;
@@ -68,11 +68,11 @@ public class UserFullResponse {
         this.faculty = faculty;
     }
 
-    public String getCourse() {
+    public int getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(int course) {
         this.course = course;
     }
 
