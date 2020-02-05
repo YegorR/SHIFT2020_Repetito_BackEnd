@@ -15,7 +15,6 @@ public class ReviewController {
     @RequestMapping(
             method=RequestMethod.GET,
             path="/user/{id}/review",
-            consumes="application/x-www-form-urlencoded",
             produces = "application/json"
     ) public List<ReviewEntity> get(@PathVariable (name="id") Long id) {
         return reviewService.get(id);

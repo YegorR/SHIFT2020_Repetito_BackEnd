@@ -21,7 +21,6 @@ public class UserController {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            consumes = "application/x-www-form-urlencoded",
             produces = "application/json"
     )
     public List<UserSimpleResponse> getList(
