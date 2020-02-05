@@ -2,6 +2,6 @@ package ru.cft.shift.repetito.entity;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class UserEntity {
 }
