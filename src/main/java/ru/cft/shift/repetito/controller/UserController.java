@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(path = "/user")
 public class UserController {
 
-    @RequestMapping(
+    /*@RequestMapping(
             method = RequestMethod.GET,
             consumes = "application/x-www-form-urlencoded",
             produces = "application/json"
@@ -61,5 +61,5 @@ public class UserController {
         user.setId(id);
         return userService.edit(user);
     }
-
+*/
 }
