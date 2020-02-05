@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.entity.response.UserFullResponse;
+import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.service.UserService;
 
 import java.util.List;
 
@@ -12,12 +16,15 @@ import java.util.List;
 @RequestMapping(path = "/user")
 public class UserController {
 
-    /*@RequestMapping(
+    @Autowired
+    UserService userService = new UserService();
+
+    @RequestMapping(
             method = RequestMethod.GET,
             consumes = "application/x-www-form-urlencoded",
             produces = "application/json"
     )
-    public UserSimpleResponse getList(
+    public List<UserSimpleResponse> getList(
             @RequestParam(name = "onlyTeacher", defaultValue = "false") boolean onlyTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
             @RequestParam(name = "course", defaultValue = "null") int course,
@@ -45,8 +52,8 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public User add(@RequestBody UserParamsRequest userParamsRequest) {
-        User user = new User(userParamsRequest);
+    public UserEntity add(@RequestBody UserParamsRequest userParamsRequest) {
+        UserEntity user = new UserEntity(userParamsRequest);
         return userService.add(user);
     }
 
@@ -56,10 +63,10 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public User edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id) {
-        User user = new User(userParamsRequest);
+    public UserEntity edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id) {
+        UserEntity user = new UserEntity(userParamsRequest);
         user.setId(id);
         return userService.edit(user);
     }
-*/
+
 }
