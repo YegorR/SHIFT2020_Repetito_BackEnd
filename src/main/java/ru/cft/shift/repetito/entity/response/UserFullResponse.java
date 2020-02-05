@@ -14,19 +14,29 @@ public class UserFullResponse {
         this.paronym = user.getParonym();
         this.faculty = user.getFaculty();
         this.course = user.getCourse();
-        this.subjects = user.getSubjects();
         this.degree = user.getDegree();
         this.about = user.getAbout();
+        this.isTeacher=user.getTeacher();
     }
     private Long id;
     private String firstName;
     private String lastName;
     private String paronym;
     private String faculty;
-    private String course;
+    private int course;
     private List<String> subjects;
     private String degree;
     private String about;
+
+    public Boolean getTeacher() {
+        return isTeacher;
+    }
+
+    public void setTeacher(Boolean teacher) {
+        isTeacher = teacher;
+    }
+
+    private Boolean isTeacher;
 
     public Long getId() {
         return id;
@@ -68,11 +78,11 @@ public class UserFullResponse {
         this.faculty = faculty;
     }
 
-    public String getCourse() {
+    public int getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(int course) {
         this.course = course;
     }
 

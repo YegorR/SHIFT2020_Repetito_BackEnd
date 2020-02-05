@@ -1,11 +1,7 @@
 package ru.cft.shift.repetito.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import ru.cft.shift.repetito.entity.response.UserFullResponse;
-import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.UserParamsRequest;
 
-import java.util.List;
 import javax.persistence.*;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -38,16 +34,13 @@ public class UserEntity {
     @Column(name = "course")
     private int course;
 
-    @Column(name = "subjects")
-    private List<String> subjects;
-
     @Column(name = "degree")
     private String degree;
 
     @Column(name = "about")
     private String about;
 
-    @Column(name = "is_teacher")
+
     private Boolean isTeacher;
 
     @Column(name = "price")
@@ -62,9 +55,12 @@ public class UserEntity {
         this.paronym = userParamsRequest.getParonym();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.subjects = userParamsRequest.getSubject();
+        this.isTeacher=userParamsRequest.getTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
+    }
+
+    public UserEntity() {
     }
 
     public Long getId() {
@@ -131,13 +127,7 @@ public class UserEntity {
         this.course = course;
     }
 
-    public List<String> getSubjects() {
-        return subjects;
-    }
 
-    public void setSubjects(List<String> subjects) {
-        this.subjects = subjects;
-    }
 
     public String getDegree() {
         return degree;

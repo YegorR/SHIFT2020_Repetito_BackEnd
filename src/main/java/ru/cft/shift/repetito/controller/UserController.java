@@ -1,12 +1,14 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.entity.response.UserFullResponse;
 import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.UserParamsRequest;
-import ru.cft.shift.repetito.service.UserServiceImpl;
+import ru.cft.shift.repetito.service.UserService;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserServiceImpl userService = new UserServiceImpl();
+    private UserService userService;
 
     @RequestMapping(
             method = RequestMethod.GET,
@@ -23,22 +25,21 @@ public class UserController {
             produces = "application/json"
     )
     public List<UserSimpleResponse> getList(
-            @RequestParam(name = "onlyTeacher", defaultValue = "false") boolean onlyTeacher,
+            @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
-            @RequestParam(name = "course", defaultValue = "null") int course,
+            @RequestParam(name = "course", defaultValue = "1") int course,
             @RequestParam(name = "subject", defaultValue = "null") List<String> subject,
             @RequestParam(name = "degree", defaultValue = "null") String degree,
             @RequestParam(name = "search", defaultValue = "null") String search,
             @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "offset", defaultValue = "0") int offset
     ) {
-        return userService.getUserList(onlyTeacher, faculty, course, subject, degree, search, limit, offset);
+        return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
     }
 
     @RequestMapping(
             method = RequestMethod.GET,
             path = "/{id}",
-            consumes = "application/x-www-form-urlencoded",
             produces = "application/json"
     )
     public UserFullResponse get(@PathVariable(name = "id") Long id) {
