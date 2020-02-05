@@ -8,4 +8,5 @@ import ru.cft.shift.repetito.entity.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
+
 }

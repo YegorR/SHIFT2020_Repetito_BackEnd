@@ -12,4 +12,5 @@ public interface UserService {
     UserEntity add(UserEntity user);
     UserEntity edit(UserEntity user);
     void delete(Long id);
+
 }
