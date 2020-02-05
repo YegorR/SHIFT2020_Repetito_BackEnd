@@ -1,6 +1,5 @@
 package ru.cft.shift.repetito.params;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserParamsRequest {
@@ -84,12 +83,12 @@ public class UserParamsRequest {
         this.about = about;
     }
 
-    public boolean isTeacher() {
-        return isTeacher;
+    public boolean getTeacher() {
+        return teacher;
     }
 
-    public void setTeacher(boolean teacher) {
-        isTeacher = teacher;
+    public void setTeacher(Boolean teacher) {
+        this.teacher = teacher;
     }
 
     public int getPrice() {
@@ -118,7 +117,7 @@ public class UserParamsRequest {
     private List<String> subject;
     private String degree;
     private String about;
-    private boolean isTeacher;
+    private Boolean teacher;
     private int price;
     private String photo;
 }

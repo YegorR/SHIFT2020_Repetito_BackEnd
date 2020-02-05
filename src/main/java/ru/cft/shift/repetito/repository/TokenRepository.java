@@ -1,5 +1,5 @@
 package ru.cft.shift.repetito.repository;
-
+/*
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
@@ -11,3 +11,5 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 
     TokenEntity createOrUpdateEntity(TokenEntity tokenEntity);
 }
+
+ */

@@ -25,26 +25,25 @@ public class UserController {
             produces = "application/json"
     )
     public List<UserSimpleResponse> getList(
-            @RequestParam(name = "onlyTeacher", defaultValue = "false") boolean onlyTeacher,
+            @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
-            @RequestParam(name = "course", defaultValue = "null") int course,
+            @RequestParam(name = "course", defaultValue = "1") int course,
             @RequestParam(name = "subject", defaultValue = "null") List<String> subject,
             @RequestParam(name = "degree", defaultValue = "null") String degree,
             @RequestParam(name = "search", defaultValue = "null") String search,
             @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "offset", defaultValue = "0") int offset
     ) {
-        return userService.get(onlyTeacher, faculty, course, subject, degree, search, limit, offset);
+        return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
     }
 
     @RequestMapping(
             method = RequestMethod.GET,
             path = "/{id}",
-            consumes = "application/x-www-form-urlencoded",
             produces = "application/json"
     )
     public UserFullResponse get(@PathVariable(name = "id") Long id) {
-        return userService.get(id);
+        return userService.getUserById(id);
     }
 
     @RequestMapping(
@@ -54,7 +53,7 @@ public class UserController {
     )
     public UserEntity add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
-        return userService.add(user);
+        return userService.register(user);
     }
 
     @RequestMapping(
@@ -66,7 +65,7 @@ public class UserController {
     public UserEntity edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id) {
         UserEntity user = new UserEntity(userParamsRequest);
         user.setId(id);
-        return userService.edit(user);
+        return userService.editUser(user);
     }
 
 }

@@ -21,7 +21,7 @@ public class ReviewController {
         return reviewService.get(id);
     }
 
-    @RequestMapping(
+    /*@RequestMapping(
             method=RequestMethod.POST,
             path="/user/{id}/review",
             consumes="application/json",
@@ -34,4 +34,6 @@ public class ReviewController {
         ReviewEntity review = new ReviewEntity(id, mark, comment,  );
         return reviewService.add(review);
     }
+
+     */
 }

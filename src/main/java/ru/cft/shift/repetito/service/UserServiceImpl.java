@@ -7,6 +7,7 @@ import ru.cft.shift.repetito.entity.response.UserFullResponse;
 import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,30 +16,37 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserEntity add(UserEntity user) {
+    @Override
+    public UserEntity register(UserEntity user) {
         return userRepository.save(user);
     }
 
-    public UserFullResponse get(Long id){
+    @Override
+    public UserFullResponse getUserById(Long id){
         Optional<UserEntity> user = userRepository.findById(id);
         if (user!=null)
         return new UserFullResponse(user.get());
+        else return null;
     }
 
-    public List<UserSimpleResponse> get(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset) {
-        List<UserEntity> userEntityList = userRepository.findUsers(onlyTeacher, faculty, course, subject, degree, search, limit, offset);
-        List<UserSimpleResponse> userSimpleResponseList = null;
-        for (UserEntity user: userEntityList) {
+    @Override
+    public List<UserSimpleResponse> getUserList(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset) {
+        List<UserSimpleResponse> userSimpleResponseList = new ArrayList<>();
+        UserSpecification spec = new UserSpecification(new SearchCriteria("isTeacher", ":", onlyTeacher));
+        List<UserEntity> users = userRepository.findAll(spec);
+        for (UserEntity user: users) {
             userSimpleResponseList.add(new UserSimpleResponse(user));
         }
         return userSimpleResponseList;
     }
 
-    public UserEntity edit(UserEntity user) {
-        return add(user);
+    @Override
+    public UserEntity editUser(UserEntity user) {
+        return register(user);
     }
 
-    public void delete(Long id){
+    @Override
+    public void deleteUser(Long id){
         Optional<UserEntity> user = userRepository.findById(id);
         if (user!=null)
         userRepository.delete(user.get());
