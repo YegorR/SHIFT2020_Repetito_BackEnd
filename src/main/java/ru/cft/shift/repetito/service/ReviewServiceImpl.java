@@ -13,13 +13,13 @@ public class ReviewServiceImpl implements  ReviewService {
     private ReviewRepository reviewRepository;
 
     @Override
-    public List<ReviewEntity> get(Long teacher_id){
-        return reviewRepository.findReviewByRepetitorId(teacher_id);
+    public List<ReviewEntity> get(Long repetitorId){
+        return reviewRepository.findByRepetitorId(repetitorId);
     }
 
     @Override
     public ReviewEntity add(ReviewEntity review)
     {
-        return reviewRepository.createReview(review);
+        return reviewRepository.save(review);
     }
 }

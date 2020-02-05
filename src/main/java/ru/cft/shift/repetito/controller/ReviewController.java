@@ -3,14 +3,14 @@ package ru.cft.shift.repetito.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.ReviewEntity;
-import ru.cft.shift.repetito.service.IReviewService;
+import ru.cft.shift.repetito.service.ReviewService;
 
 import java.util.List;
 
 @RestController
 public class ReviewController {
     @Autowired
-    private IReviewService reviewService;
+    private ReviewService reviewService;
 
     @RequestMapping(
             method=RequestMethod.GET,

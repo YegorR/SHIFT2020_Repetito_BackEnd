@@ -8,6 +8,7 @@ import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,12 +16,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     public UserEntity add(UserEntity user) {
-        return userRepository.createUser(user);
+        return userRepository.save(user);
     }
 
     public UserFullResponse get(Long id){
-        UserEntity user = userRepository.findUserById(id);
-        return new UserFullResponse(user);
+        Optional<UserEntity> user = userRepository.findById(id);
+        if (user!=null)
+        return new UserFullResponse(user.get());
     }
 
     public List<UserSimpleResponse> get(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset) {
@@ -33,10 +35,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserEntity edit(UserEntity user) {
-        return null;
+        add(user);
     }
 
     public void delete(Long id){
-        return null;
+        Optional<UserEntity> user = userRepository.findById(id);
+        if (user!=null)
+        userRepository.delete(user.get());
     }
 }
