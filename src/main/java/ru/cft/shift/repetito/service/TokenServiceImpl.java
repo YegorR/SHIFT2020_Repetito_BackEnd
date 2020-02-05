@@ -20,7 +20,7 @@ public class TokenServiceImpl implements TokenService{
         TokenEntity tokenEntity = new TokenEntity();
         tokenEntity.setUser(userEntity);
         tokenEntity.setUuid(UUID.randomUUID());
-        tokenRepository.createOrUpdateEntity(tokenEntity);
+        tokenRepository.save(tokenEntity);
         return tokenEntity;
     }
 
@@ -37,7 +37,7 @@ public class TokenServiceImpl implements TokenService{
 
     @Override
     public void deleteToken(UUID uuid){
-        tokenRepository.deleteByUuid();
+        tokenRepository.deleteByUuid(uuid);
     }
 
 }

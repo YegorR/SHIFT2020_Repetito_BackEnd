@@ -36,6 +36,7 @@ public class AuthenticationController {
             TokenEntity tokenEntity = tokenService.getToken(userEntity);
             LoginResultResponse loginResultResponse = new LoginResultResponse();
             loginResultResponse.setSuccessful(true);
+            loginResultResponse.setUserEntity(userEntity);
             loginResultResponse.setUuid(tokenEntity.getUuid());
             return loginResultResponse;
         } else {
