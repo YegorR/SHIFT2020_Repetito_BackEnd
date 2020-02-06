@@ -130,8 +130,8 @@ public class UserEntity {
         return patronymic;
     }
 
-    public void setPatronymic(String paronym) {
-        this.patronymic = paronym;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getFaculty() {
