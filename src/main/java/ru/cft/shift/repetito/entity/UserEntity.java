@@ -74,7 +74,7 @@ public class UserEntity {
         this.password = userParamsRequest.getPassword();
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
-        this.patronymic = userParamsRequest.getParonym();
+        this.patronymic = userParamsRequest.getPatronymic();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
         this.teacher = userParamsRequest.getIsTeacher();
