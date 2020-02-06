@@ -16,7 +16,7 @@ public class UserFullResponse {
         this.course = user.getCourse();
         this.degree = user.getDegree();
         this.about = user.getAbout();
-        this.isTeacher=user.getTeacher();
+        this.isTeacher=user.getIsTeacher();
     }
     private Long id;
     private String firstName;
@@ -27,16 +27,15 @@ public class UserFullResponse {
     private List<String> subjects;
     private String degree;
     private String about;
+    private Boolean isTeacher;
 
-    public Boolean getTeacher() {
+    public Boolean getIsTeacher() {
         return isTeacher;
     }
 
-    public void setTeacher(Boolean teacher) {
+    public void setIsTeacher(Boolean teacher) {
         isTeacher = teacher;
     }
-
-    private Boolean isTeacher;
 
     public Long getId() {
         return id;

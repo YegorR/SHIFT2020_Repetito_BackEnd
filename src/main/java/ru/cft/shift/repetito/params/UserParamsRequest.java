@@ -83,12 +83,12 @@ public class UserParamsRequest {
         this.about = about;
     }
 
-    public boolean getTeacher() {
-        return teacher;
+    public boolean getIsTeacher() {
+        return isTeacher;
     }
 
-    public void setTeacher(Boolean teacher) {
-        this.teacher = teacher;
+    public void setIsTeacher(Boolean teacher) {
+        this.isTeacher = teacher;
     }
 
     public int getPrice() {
@@ -117,7 +117,7 @@ public class UserParamsRequest {
     private List<String> subject;
     private String degree;
     private String about;
-    private Boolean teacher;
+    private Boolean isTeacher;
     private int price;
     private String photo;
 }

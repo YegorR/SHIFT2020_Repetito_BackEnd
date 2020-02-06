@@ -40,24 +40,27 @@ public class UserEntity {
     @Column(name = "about")
     private String about;
 
-
+    @Column(name = "isTeacher")
     private Boolean isTeacher;
 
     @Column(name = "price")
     private int price;
 
     @Column(name = "avg_mark")
-    private int avgMark;
+    private float avgMark;
 
     public UserEntity(UserParamsRequest userParamsRequest){
+        this.email = userParamsRequest.getEmail();
+        this.password=userParamsRequest.getPassword();
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
         this.paronym = userParamsRequest.getParonym();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.isTeacher=userParamsRequest.getTeacher();
+        this.isTeacher=userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
+        this.price=userParamsRequest.getPrice();
     }
 
     public UserEntity() {
@@ -145,11 +148,11 @@ public class UserEntity {
         this.about = about;
     }
 
-    public Boolean getTeacher() {
+    public Boolean getIsTeacher() {
         return isTeacher;
     }
 
-    public void setTeacher(Boolean teacher) {
+    public void setIsTeacher(Boolean teacher) {
         isTeacher = teacher;
     }
 
@@ -161,11 +164,11 @@ public class UserEntity {
         this.price = price;
     }
 
-    public int getAvgMark() {
+    public float getAvgMark() {
         return avgMark;
     }
 
-    public void setAvgMark(int avgMark) {
+    public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
     }
 }
