@@ -12,9 +12,9 @@ import java.util.UUID;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Override
     public TokenEntity login(String email, String password){

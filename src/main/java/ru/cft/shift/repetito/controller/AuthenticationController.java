@@ -20,13 +20,13 @@ import java.util.UUID;
 public class AuthenticationController {
 
     @Autowired
-    AuthenticationService authenticationService;
+    private AuthenticationService authenticationService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @RequestMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginFormRequest loginFormRequest){
