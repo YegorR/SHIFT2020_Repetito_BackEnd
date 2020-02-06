@@ -1,6 +1,6 @@
 package ru.cft.shift.repetito.entity;
 
-import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
 import static javax.persistence.GenerationType.IDENTITY;

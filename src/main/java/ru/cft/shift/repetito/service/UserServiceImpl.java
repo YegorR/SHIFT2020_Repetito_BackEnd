@@ -3,12 +3,9 @@ package ru.cft.shift.repetito.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.cft.shift.repetito.entity.UserEntity;
-import ru.cft.shift.repetito.entity.response.UserFullResponse;
-import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
+import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service

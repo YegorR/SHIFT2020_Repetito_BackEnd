@@ -1,13 +1,11 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.UserEntity;
-import ru.cft.shift.repetito.entity.response.UserFullResponse;
-import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
-import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.params.response.UserFullResponse;
+import ru.cft.shift.repetito.params.response.UserSimpleResponse;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.service.UserService;
 
 import java.util.List;
