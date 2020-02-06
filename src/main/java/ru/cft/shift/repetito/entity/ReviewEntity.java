@@ -25,6 +25,13 @@ public class ReviewEntity {
     @Column(name = "teacher_id")
     private  Long teacherId;
 
+    public ReviewEntity(int mark, String comment, Long reviewerId, Long teacherId) {
+        this.mark=mark;
+        this.comment=comment;
+        this.reviewerId=reviewerId;
+        this.teacherId=teacherId;
+    }
+
     public Long getId() {
         return id;
     }
