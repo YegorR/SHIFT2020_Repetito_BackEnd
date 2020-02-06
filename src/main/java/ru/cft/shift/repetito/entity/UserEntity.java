@@ -3,19 +3,20 @@ package ru.cft.shift.repetito.entity;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -42,8 +43,8 @@ public class UserEntity {
     @Column(name = "about")
     private String about;
 
-    @Column(name = "isTeacher")
-    private Boolean isTeacher;
+    @Column(name = "teacher")
+    private Boolean teacher;
 
     @Column(name = "price")
     private int price;
@@ -51,26 +52,32 @@ public class UserEntity {
     @Column(name = "avg_mark")
     private float avgMark;
 
-    public Set<SubjectEntity> getSubjects() {
-        return subjects;
-    }
+    @OneToMany(mappedBy = "reviewer")
+    private List<ReviewEntity> writtenReviews;
 
-    public void setSubjects(Set<SubjectEntity> subjects) {
-        this.subjects = subjects;
-    }
+    @OneToMany(mappedBy = "teacher")
+    private List<ReviewEntity> receivedReviews;
 
     @ManyToMany
+    @JoinTable(
+            name = "user_subject",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<SubjectEntity> subjects;
 
-    public UserEntity(UserParamsRequest userParamsRequest){
-        this.email=userParamsRequest.getEmail();
-        this.password=userParamsRequest.getPassword();
+    @OneToOne
+    @JoinColumn("token_id")
+    private TokenEntity token;
+
+    public UserEntity(UserParamsRequest userParamsRequest) {
+        this.email = userParamsRequest.getEmail();
+        this.password = userParamsRequest.getPassword();
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
         this.patronymic = userParamsRequest.getParonym();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.isTeacher =userParamsRequest.getIsTeacher();
+        this.teacher = userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
     }
@@ -158,12 +165,12 @@ public class UserEntity {
         this.about = about;
     }
 
-    public Boolean getIsTeacher() {
-        return isTeacher;
+    public Boolean getTeacher() {
+        return teacher;
     }
 
-    public void setIsTeacher(Boolean teacher) {
-        this.isTeacher = teacher;
+    public void setTeacher(Boolean teacher) {
+        this.teacher = teacher;
     }
 
     public int getPrice() {
@@ -181,14 +188,21 @@ public class UserEntity {
     public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
     }
-/*
+
+
+    public Set<SubjectEntity> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<SubjectEntity> subjects) {
+        this.subjects = subjects;
+    }
+
     public TokenEntity getToken() {
         return token;
     }
 
-    public void setToken(TokenEntity token) {
-        this.token = token;
+    public void setToken(TokenEntity tokenEntity) {
+        this.token = tokenEntity;
     }
-
- */
 }

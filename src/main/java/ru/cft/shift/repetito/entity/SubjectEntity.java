@@ -7,25 +7,17 @@ import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name="subjects")
+@Table(name="subject")
 public class SubjectEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name="id")
     private Long id;
 
-    @Column(name="subject")
+    @Column(name="name")
     private String name;
 
-    public Set<UserEntity> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserEntity> users) {
-        this.users = users;
-    }
-
-    @ManyToMany
+    @ManyToMany(mappedBy = "subjects")
     private Set<UserEntity> users;
 
     public Long getId() {
@@ -42,5 +34,13 @@ public class SubjectEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<UserEntity> users) {
+        this.users = users;
     }
 }

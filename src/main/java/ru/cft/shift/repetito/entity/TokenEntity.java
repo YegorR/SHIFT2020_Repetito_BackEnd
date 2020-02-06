@@ -6,8 +6,19 @@ import java.util.UUID;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name="tokens")
+@Table(name="token")
 public class TokenEntity {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name="id")
+    private Long id;
+
+    @OneToOne(mappedBy = "token")
+    private UserEntity user;
+
+    @Column(name = "uuid")
+    private UUID uuid;
+
     public Long getId() {
         return id;
     }
@@ -15,16 +26,6 @@ public class TokenEntity {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name="id")
-    private Long id;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    private UserEntity user;
-
-    private UUID uuid;
 
     public UserEntity getUser() {
         return user;

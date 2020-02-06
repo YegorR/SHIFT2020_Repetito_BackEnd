@@ -14,7 +14,7 @@ public class UserFullResponse {
         this.course = user.getCourse();
         this.degree = user.getDegree();
         this.about = user.getAbout();
-        this.isTeacher=user.getIsTeacher();
+        this.isTeacher=user.getTeacher();
         this.price = user.getPrice();
     }
     private Long id;

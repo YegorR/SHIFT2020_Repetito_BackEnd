@@ -5,7 +5,7 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name="reviews")
+@Table(name="review")
 public class ReviewEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -15,20 +15,15 @@ public class ReviewEntity {
     private int mark;
 
     @Column(name = "comment")
-    private String  comment;
+    private String comment;
 
-    @Column(name = "reviewer_id")
-    private Long reviewerId;
+    @ManyToOne
+    @JoinColumn(name = "reviewer_id")
+    private UserEntity reviewer;
 
-    @Column(name = "teacher_id")
-    private  Long teacherId;
-
-    public ReviewEntity(int mark, String comment, Long reviewerId, Long teacherId) {
-        this.mark=mark;
-        this.comment=comment;
-        this.reviewerId=reviewerId;
-        this.teacherId=teacherId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private  UserEntity teacher;
 
     public Long getId() {
         return id;
@@ -54,32 +49,19 @@ public class ReviewEntity {
         this.comment = comment;
     }
 
-    public Long getReviewerId() {
-        return reviewerId;
+    public UserEntity getReviewer() {
+        return reviewer;
     }
 
-    public void setReviewerId(Long reviewerId) {
-        this.reviewerId = reviewerId;
+    public void setReviewer(UserEntity reviewer) {
+        this.reviewer = reviewer;
     }
 
-    public Long getTeacherId() {
-        return teacherId;
+    public UserEntity getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(UserEntity teacher) {
+        this.teacher = teacher;
     }
-
-    public UserEntity getRepetitor() {
-        return repetitor;
-    }
-
-    public void setRepetitor(UserEntity repetitor) {
-        this.repetitor = repetitor;
-    }
-
-    @ManyToOne
-    private UserEntity repetitor;
-
-
 }
