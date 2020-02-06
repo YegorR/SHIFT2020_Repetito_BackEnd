@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.EntityResponse;
 import ru.cft.shift.repetito.entity.UserEntity;
-import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.service.UserFilter;
 import ru.cft.shift.repetito.service.UserService;
 
