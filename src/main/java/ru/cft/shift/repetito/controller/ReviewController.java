@@ -39,7 +39,7 @@ public class ReviewController {
             @RequestParam (name="mark") int mark,
             @RequestParam (name="comment") String comment,
             @PathVariable (name="id") Long teacherId,
-            @RequestHeader (name="token") UUID token
+            @RequestHeader ("Authorization") UUID token
     ) {
         Long reviewerId = tokenService.getUser(token).getId();
         ReviewEntity review = new ReviewEntity(mark, comment, reviewerId, teacherId );
