@@ -51,16 +51,6 @@ public class UserEntity {
     @Column(name = "avg_mark")
     private float avgMark;
 
-    public Set<SubjectEntity> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Set<SubjectEntity> subjects) {
-        this.subjects = subjects;
-    }
-
-    @ManyToMany
-    private Set<SubjectEntity> subjects;
 
     public UserEntity(UserParamsRequest userParamsRequest){
         this.email=userParamsRequest.getEmail();
@@ -73,6 +63,7 @@ public class UserEntity {
         this.isTeacher =userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
+        this.price=userParamsRequest.getPrice();
     }
 
     public UserEntity() {

@@ -29,6 +29,10 @@ public class ReviewEntity {
         this.reviewerId=reviewerId;
         this.teacherId=teacherId;
     }
+    public ReviewEntity()
+    {
+
+    }
 
     public Long getId() {
         return id;

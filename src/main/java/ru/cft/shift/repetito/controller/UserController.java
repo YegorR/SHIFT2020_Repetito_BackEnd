@@ -8,13 +8,11 @@ import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
+import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserFilter;
 import ru.cft.shift.repetito.service.UserService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,6 +21,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TokenService tokenService;
 
     @RequestMapping(
             method = RequestMethod.GET,
@@ -61,7 +62,8 @@ public class UserController {
             produces = "application/json"
     )
     public ResponseEntity<?> get(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+        UserFullResponse response = new UserFullResponse(userService.getUserById(id));
+        return ResponseEntity.ok(response);
     }
 
     @RequestMapping(
@@ -90,7 +92,12 @@ public class UserController {
             method=RequestMethod.DELETE,
             path="/{id}",
             produces="application/json"
-    ) public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
+    ) public ResponseEntity<?> delete(@PathVariable(name="id") Long id, @RequestHeader (value = "Authorization", required = false) UUID token){
+        UserEntity userForDeleted = null;
+        if (token!=null)
+            userForDeleted = tokenService.getUser(token);
+        if (userForDeleted!=null && userForDeleted.getId()==id)
         return ResponseEntity.ok(userService.deleteUser(id));
+        else return ResponseEntity.status(403).body("Forbidden");
     }
 }
