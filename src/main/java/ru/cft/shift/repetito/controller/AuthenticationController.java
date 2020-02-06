@@ -2,10 +2,7 @@ package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.request.LoginFormRequest;
@@ -27,7 +24,10 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
-    @RequestMapping("/login")
+    @RequestMapping(
+            path = "/login",
+            method = RequestMethod.POST
+    )
     public ResponseEntity<?> login(@RequestBody LoginFormRequest loginFormRequest){
         TokenEntity tokenEntity = authenticationService.login(loginFormRequest.getEmail(), loginFormRequest.getPassword());
         LoginResultResponse loginResultResponse = new LoginResultResponse();
@@ -42,9 +42,11 @@ public class AuthenticationController {
         }
         return ResponseEntity.ok(loginResultResponse);
     }
-    @RequestMapping("/logout")
+    @RequestMapping(
+            path = "/logout",
+            method = RequestMethod.POST
+    )
     public void logout(@RequestHeader("Authorization") UUID uuid){
-        UserEntity userEntity = tokenService.getUser(uuid);
-        authenticationService.logout(userEntity);
+        authenticationService.logout(uuid);
     }
 }

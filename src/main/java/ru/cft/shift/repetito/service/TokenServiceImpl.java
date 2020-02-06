@@ -2,6 +2,7 @@ package ru.cft.shift.repetito.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.repository.TokenRepository;
@@ -41,7 +42,7 @@ public class TokenServiceImpl implements TokenService{
     }
 
     @Override
-    public void deleteToken(UUID uuid){
+    public void deleteByUuid(UUID uuid){
         tokenRepository.deleteByUuid(uuid);
     }
 
