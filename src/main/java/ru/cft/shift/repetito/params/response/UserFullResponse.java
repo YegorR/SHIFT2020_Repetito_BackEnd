@@ -6,10 +6,11 @@ import java.util.List;
 
 public class UserFullResponse {
     public UserFullResponse(UserEntity user){
+        this.email=user.getEmail();
         this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
-        this.paronym = user.getPatronymic();
+        this.patronymic = user.getPatronymic();
         this.faculty = user.getFaculty();
         this.course = user.getCourse();
         this.degree = user.getDegree();
@@ -18,17 +19,24 @@ public class UserFullResponse {
         this.price = user.getPrice();
     }
     private Long id;
+    private String email;
     private String firstName;
     private String lastName;
-    private String paronym;
+    private String patronymic;
     private String faculty;
     private int course;
-    private List<String> subjects;
     private String degree;
     private String about;
     private Boolean isTeacher;
     private int price;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public Boolean getIsTeacher() {
         return isTeacher;
     }
@@ -61,12 +69,12 @@ public class UserFullResponse {
         this.lastName = lastName;
     }
 
-    public String getParonym() {
-        return paronym;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setParonym(String paronym) {
-        this.paronym = paronym;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getFaculty() {
@@ -85,14 +93,6 @@ public class UserFullResponse {
         this.course = course;
     }
 
-    public List<String> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<String> subjects) {
-        this.subjects = subjects;
-    }
-
     public String getDegree() {
         return degree;
     }
@@ -107,5 +107,12 @@ public class UserFullResponse {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -35,8 +35,9 @@ public class TokenServiceImpl implements TokenService{
 
     @Override
     public UserEntity getUser(UUID uuid){
-        TokenEntity tokenEntity = tokenRepository.findByUuid(uuid);
-        return tokenEntity.getUser();
+        if (uuid!=null)
+            return tokenRepository.findByUuid(uuid).getUser();
+        else return null;
     }
 
     @Override

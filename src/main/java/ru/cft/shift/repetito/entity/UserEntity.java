@@ -80,6 +80,7 @@ public class UserEntity {
         this.teacher = userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
+        this.price=userParamsRequest.getPrice();
     }
 
     public UserEntity() {

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
     @Query("from ReviewEntity r where r.teacher = : teacherId")
-    List<ReviewEntity> findByRepetitorId(@Param("teacher") long teacherId);
+    List<ReviewEntity> findByRepetitorId(@Param("teacherId") long teacherId);
 }
