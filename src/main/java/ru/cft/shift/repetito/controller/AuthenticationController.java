@@ -44,11 +44,10 @@ public class AuthenticationController {
         }
     }
     @RequestMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader("Authorization") UUID uuid){
+    public void logout(@RequestHeader("Authorization") UUID uuid){
         UserEntity userEntity = tokenService.getUser(uuid);
         userEntity.setToken(null);
         userService.editUser(userEntity);
         tokenService.deleteToken(uuid);
-
     }
 }
