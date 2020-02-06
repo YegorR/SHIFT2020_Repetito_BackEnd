@@ -29,15 +29,18 @@ public class AuthenticationController {
     TokenService tokenService;
 
     @RequestMapping("/login")
-    public ResponseEntity login(@RequestBody LoginFormRequest loginFormRequest){
+    public ResponseEntity<?> login(@RequestBody LoginFormRequest loginFormRequest){
         TokenEntity tokenEntity = authenticationService.login(loginFormRequest.getEmail(), loginFormRequest.getPassword());
+        LoginResultResponse loginResultResponse = new LoginResultResponse();
         if (tokenEntity != null) {
-            LoginResultResponse loginResultResponse = new LoginResultResponse();
             loginResultResponse.setSuccessful(true);
             loginResultResponse.setUserEntity(tokenEntity.getUser());
             loginResultResponse.setUuid(tokenEntity.getUuid());
-            return new ResponseEntity<LoginResultResponse>(loginResultResponse, HttpStatus.OK);
+            return ResponseEntity.ok(loginFormRequest);
         } else {
+            loginResultResponse.setSuccessful(false);
+            loginResultResponse.setUserEntity(null);
+            loginResultResponse.setUuid(null);
             return ResponseEntity.ok(loginFormRequest);
         }
     }
