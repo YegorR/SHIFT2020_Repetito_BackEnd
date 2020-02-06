@@ -13,9 +13,9 @@ import java.util.UUID;
 public class TokenServiceImpl implements TokenService{
 
     @Autowired
-    TokenRepository tokenRepository;
+    private TokenRepository tokenRepository;
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Override
     public TokenEntity getToken(UserEntity userEntity){
