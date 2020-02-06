@@ -10,5 +10,4 @@ public interface AuthenticationService {
     TokenEntity login(String email, String password);
 
     void logout(UserEntity userEntity);
-
 }

@@ -27,6 +27,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public void logout(UserEntity userEntity){
+        userEntity.setToken(null);
+        userService.editUser(userEntity);
         tokenService.deleteToken(userEntity.getToken().getUuid());
     }
 }

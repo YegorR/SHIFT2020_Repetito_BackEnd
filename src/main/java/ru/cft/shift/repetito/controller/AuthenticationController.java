@@ -14,8 +14,6 @@ import ru.cft.shift.repetito.params.response.LoginResultResponse;
 import ru.cft.shift.repetito.service.AuthenticationService;
 import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserService;
-
-import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -46,8 +44,6 @@ public class AuthenticationController {
     @RequestMapping("/logout")
     public void logout(@RequestHeader("Authorization") UUID uuid){
         UserEntity userEntity = tokenService.getUser(uuid);
-        userEntity.setToken(null);
-        userService.editUser(userEntity);
-        tokenService.deleteToken(uuid);
+        authenticationService.logout(userEntity);
     }
 }
