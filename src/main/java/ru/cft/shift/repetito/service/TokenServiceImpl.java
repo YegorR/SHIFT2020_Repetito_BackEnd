@@ -23,6 +23,7 @@ public class TokenServiceImpl implements TokenService{
         TokenEntity tokenEntity = new TokenEntity();
         tokenEntity.setUser(userEntity);
         tokenEntity.setUuid(UUID.randomUUID());
+        userEntity.setToken(tokenEntity);
         tokenRepository.save(tokenEntity);
         return tokenEntity;
     }
@@ -34,7 +35,8 @@ public class TokenServiceImpl implements TokenService{
 
     @Override
     public UserEntity getUser(UUID uuid){
-        return tokenRepository.findByUuid(uuid).getUser();
+        TokenEntity tokenEntity = tokenRepository.findByUuid(uuid);
+        return tokenEntity.getUser();
     }
 
     @Override
