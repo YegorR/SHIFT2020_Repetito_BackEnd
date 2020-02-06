@@ -17,7 +17,7 @@ public class UserSimpleResponse {
     private String lastName;
     private String paronym;
     private int price;
-    private int avgMark;
+    private float avgMark;
 
     public Long getId() {
         return id;
@@ -59,11 +59,11 @@ public class UserSimpleResponse {
         this.price = price;
     }
 
-    public int getAvgMark() {
+    public float getAvgMark() {
         return avgMark;
     }
 
-    public void setAvgMark(int avgMark) {
+    public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
     }
 }

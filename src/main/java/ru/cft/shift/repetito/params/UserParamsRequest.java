@@ -1,8 +1,8 @@
-package ru.cft.shift.repetito.params.request;
+package ru.cft.shift.repetito.params;
 
 import java.util.List;
 
-public class UserJSONRequest {
+public class UserParamsRequest {
     public String getEmail() {
         return email;
     }
@@ -51,11 +51,11 @@ public class UserJSONRequest {
         this.faculty = faculty;
     }
 
-    public String getCourse() {
+    public int getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(int course) {
         this.course = course;
     }
 
@@ -83,12 +83,12 @@ public class UserJSONRequest {
         this.about = about;
     }
 
-    public boolean isTeacher() {
+    public boolean getIsTeacher() {
         return isTeacher;
     }
 
-    public void setTeacher(boolean teacher) {
-        isTeacher = teacher;
+    public void setIsTeacher(Boolean teacher) {
+        this.isTeacher = teacher;
     }
 
     public int getPrice() {
@@ -113,11 +113,11 @@ public class UserJSONRequest {
     private String lastName;
     private String paronym;
     private String faculty;
-    private String course;
+    private int course;
     private List<String> subject;
     private String degree;
     private String about;
-    private boolean isTeacher;
+    private Boolean isTeacher;
     private int price;
     private String photo;
 }

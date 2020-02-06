@@ -1,4 +1,4 @@
-package ru.cft.shift.repetito.params.response;
+package ru.cft.shift.repetito.params;
 
 import ru.cft.shift.repetito.entity.UserEntity;
 

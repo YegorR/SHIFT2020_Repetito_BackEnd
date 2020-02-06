@@ -6,6 +6,7 @@ import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,11 +20,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserFullResponse getUserById(Long id){
-        Optional<UserEntity> user = userRepository.findById(id);
-        if (user!=null)
-        return new UserFullResponse(user.get());
-        else return null;
+    public UserEntity getUserById(Long id){
+        Optional<UserEntity> userOptional = userRepository.findById(id);
+        return userOptional.get();
     }
 
     /*@Override
@@ -38,6 +37,12 @@ public class UserServiceImpl implements UserService {
     }*/
 
     @Override
+    public List<UserEntity> getUserList(UserFilter userFilter) {
+        UserSpecification spec = new UserSpecification(new SearchCriteria("teacher", ":", userFilter.isTeacher()));
+        return userRepository.findAll(spec);
+    }
+
+    @Override
     public UserEntity editUser(UserEntity user) {
         return register(user);
     }
@@ -49,8 +54,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id){
-        Optional<UserEntity> user = userRepository.findById(id);
-        if (user!=null)
-        userRepository.delete(user.get());
+        userRepository.deleteById(id);
     }
 }

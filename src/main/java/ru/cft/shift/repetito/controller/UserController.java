@@ -8,10 +8,14 @@ import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
+import ru.cft.shift.repetito.service.UserFilter;
 import ru.cft.shift.repetito.service.UserService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -35,7 +39,20 @@ public class UserController {
             @RequestParam(name = "offset", defaultValue = "0") int offset
     ) {
         //return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
-        return ResponseEntity.ok(new ArrayList<UserSimpleResponse>());
+        //return ResponseEntity.ok(new ArrayList<UserSimpleResponse>());
+        UserFilter userFilter = new UserFilter();
+        userFilter.setTeacher(isTeacher);
+        userFilter.setFaculty(new ArrayList<>(Collections.singletonList(faculty)));
+        userFilter.setCourses(new ArrayList<>(Collections.singletonList(course)));
+        userFilter.setSubject(subject);
+        userFilter.setDegree(degree);
+        userFilter.setAbout(search);
+        userFilter.setLimit(limit);
+        userFilter.setOffset(offset);
+        List<UserEntity> users = userService.getUserList(userFilter);
+        return ResponseEntity.ok(users.stream()
+                .map(UserSimpleResponse::new)
+                .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     @RequestMapping(
