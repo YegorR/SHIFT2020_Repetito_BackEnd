@@ -3,6 +3,8 @@ package ru.cft.shift.repetito.entity;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
+import java.util.Set;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -51,6 +53,17 @@ public class UserEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private TokenEntity token;
+
+    public Set<SubjectEntity> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<SubjectEntity> subjects) {
+        this.subjects = subjects;
+    }
+
+    @ManyToMany
+    private Set<SubjectEntity> subjects;
 
     public UserEntity(UserParamsRequest userParamsRequest){
         this.firstName = userParamsRequest.getFirstName();
