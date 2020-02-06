@@ -8,6 +8,6 @@ import ru.cft.shift.repetito.entity.ReviewEntity;
 import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
-    @Query("from ReviewEntity r where r.teacher = : teacherId")
+    @Query("from ReviewEntity r where r.teacher.id = :teacherId")
     List<ReviewEntity> findByRepetitorId(@Param("teacherId") long teacherId);
 }

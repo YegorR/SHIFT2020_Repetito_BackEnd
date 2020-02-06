@@ -7,7 +7,7 @@ public class UserSimpleResponse {
         this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
-        this.paronym = user.getPatronymic();
+        this.patronymic = user.getPatronymic();
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
     }
@@ -15,7 +15,7 @@ public class UserSimpleResponse {
     private Long id;
     private String firstName;
     private String lastName;
-    private String paronym;
+    private String patronymic;
     private int price;
     private float avgMark;
 
@@ -43,12 +43,12 @@ public class UserSimpleResponse {
         this.lastName = lastName;
     }
 
-    public String getParonym() {
-        return paronym;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setParonym(String paronym) {
-        this.paronym = paronym;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public int getPrice() {
