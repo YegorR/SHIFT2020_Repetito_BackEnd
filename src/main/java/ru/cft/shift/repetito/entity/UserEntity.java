@@ -40,14 +40,14 @@ public class UserEntity {
     @Column(name = "about")
     private String about;
 
-    @Column(name = "teacher")
-    private Boolean teacher;
+    @Column(name = "isTeacher")
+    private Boolean isTeacher;
 
     @Column(name = "price")
     private int price;
 
     @Column(name = "avg_mark")
-    private int avgMark;
+    private float avgMark;
 
     @OneToOne(cascade = CascadeType.ALL)
     private TokenEntity token;
@@ -58,7 +58,7 @@ public class UserEntity {
         this.patronymic = userParamsRequest.getParonym();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.teacher =userParamsRequest.getTeacher();
+        this.isTeacher =userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
     }
@@ -146,12 +146,12 @@ public class UserEntity {
         this.about = about;
     }
 
-    public Boolean getTeacher() {
-        return teacher;
+    public Boolean getIsTeacher() {
+        return isTeacher;
     }
 
-    public void setTeacher(Boolean teacher) {
-        this.teacher = teacher;
+    public void setIsTeacher(Boolean teacher) {
+        this.isTeacher = teacher;
     }
 
     public int getPrice() {
@@ -162,11 +162,11 @@ public class UserEntity {
         this.price = price;
     }
 
-    public int getAvgMark() {
+    public float getAvgMark() {
         return avgMark;
     }
 
-    public void setAvgMark(int avgMark) {
+    public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
     }
 

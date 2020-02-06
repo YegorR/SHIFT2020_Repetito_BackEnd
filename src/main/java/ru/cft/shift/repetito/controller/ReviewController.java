@@ -1,7 +1,6 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.ReviewEntity;
 import ru.cft.shift.repetito.service.ReviewService;
@@ -17,8 +16,8 @@ public class ReviewController {
             method=RequestMethod.GET,
             path="/user/{id}/review",
             produces = "application/json"
-    ) public ResponseEntity<?> get(@PathVariable (name="id") Long id) {
-        return ResponseEntity.ok(reviewService.get(id));
+    ) public List<ReviewEntity> get(@PathVariable (name="id") Long id) {
+        return reviewService.get(id);
     }
 
     /*@RequestMapping(
@@ -26,13 +25,13 @@ public class ReviewController {
             path="/user/{id}/review",
             consumes="application/json",
             produces="application/json"
-    ) public ResponseEntity<?> add(
+    ) public ReviewEntity add(
             @RequestParam (name="mark") int mark,
             @RequestParam (name="comment") String comment,
             @PathVariable (name="id") Long id
     ) {
         ReviewEntity review = new ReviewEntity(id, mark, comment,  );
-        return ResponseEntity<?>.ok(reviewService.add(review));
+        return reviewService.add(review);
     }
 
      */
