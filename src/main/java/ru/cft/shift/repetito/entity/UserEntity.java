@@ -25,8 +25,8 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "paronym") //вообще middle_name надо по идее
-    private String paronym;
+    @Column(name = "patronymic") //вообще middle_name надо по идее
+    private String patronymic;
 
     @Column(name = "faculty")
     private String faculty;
@@ -40,8 +40,8 @@ public class UserEntity {
     @Column(name = "about")
     private String about;
 
-
-    private Boolean isTeacher;
+    @Column(name = "teacher")
+    private Boolean teacher;
 
     @Column(name = "price")
     private int price;
@@ -49,13 +49,16 @@ public class UserEntity {
     @Column(name = "avg_mark")
     private int avgMark;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private TokenEntity token;
+
     public UserEntity(UserParamsRequest userParamsRequest){
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
-        this.paronym = userParamsRequest.getParonym();
+        this.patronymic = userParamsRequest.getParonym();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.isTeacher=userParamsRequest.getTeacher();
+        this.teacher =userParamsRequest.getTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
     }
@@ -103,12 +106,12 @@ public class UserEntity {
         this.lastName = lastName;
     }
 
-    public String getParonym() {
-        return paronym;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setParonym(String paronym) {
-        this.paronym = paronym;
+    public void setPatronymic(String paronym) {
+        this.patronymic = paronym;
     }
 
     public String getFaculty() {
@@ -127,8 +130,6 @@ public class UserEntity {
         this.course = course;
     }
 
-
-
     public String getDegree() {
         return degree;
     }
@@ -146,11 +147,11 @@ public class UserEntity {
     }
 
     public Boolean getTeacher() {
-        return isTeacher;
+        return teacher;
     }
 
     public void setTeacher(Boolean teacher) {
-        isTeacher = teacher;
+        this.teacher = teacher;
     }
 
     public int getPrice() {
@@ -167,5 +168,13 @@ public class UserEntity {
 
     public void setAvgMark(int avgMark) {
         this.avgMark = avgMark;
+    }
+
+    public TokenEntity getToken() {
+        return token;
+    }
+
+    public void setToken(TokenEntity token) {
+        this.token = token;
     }
 }

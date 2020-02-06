@@ -2,14 +2,12 @@ package ru.cft.shift.repetito.params.response;
 
 import ru.cft.shift.repetito.entity.UserEntity;
 
-import java.util.List;
-
 public class UserSimpleResponse {
     public UserSimpleResponse(UserEntity user){
         this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
-        this.paronym = user.getParonym();
+        this.paronym = user.getPatronymic();
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
     }
