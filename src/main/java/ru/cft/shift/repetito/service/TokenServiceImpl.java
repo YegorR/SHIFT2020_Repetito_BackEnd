@@ -11,7 +11,7 @@ import ru.cft.shift.repetito.repository.UserProjection;
 import java.util.UUID;
 
 @Service
-public class TokenServiceImpl implements TokenService{
+public class TokenServiceImpl implements TokenService {
 
     @Autowired
     private TokenRepository tokenRepository;
@@ -19,30 +19,42 @@ public class TokenServiceImpl implements TokenService{
     private UserService userService;
 
     @Override
-    public TokenEntity getToken(UserEntity userEntity){
+    public TokenEntity getToken(UserEntity userEntity) {
+        if (userEntity.getToken() != null) {
+            deleteTokenByUser(userEntity);
+            userEntity.setToken(null);
+        }
         TokenEntity tokenEntity = new TokenEntity();
         tokenEntity.setUser(userEntity);
         tokenEntity.setUuid(UUID.randomUUID());
         userEntity.setToken(tokenEntity);
-        tokenRepository.save(tokenEntity);
+        userService.editUser(userEntity);
         return tokenEntity;
     }
 
     @Override
-    public Boolean checkToken(UUID uuid){
+    public Boolean checkToken(UUID uuid) {
         return tokenRepository.existsByUuid(uuid);
     }
 
     @Override
-    public UserEntity getUser(UUID uuid){
-        if (uuid!=null)
+    public UserEntity getUser(UUID uuid) {
+        if (uuid != null)
             return tokenRepository.findByUuid(uuid).getUser();
         else return null;
     }
 
     @Override
-    public void deleteByUuid(UUID uuid){
-        tokenRepository.deleteByUuid(uuid);
+    public void deleteTokenByUuid(UUID uuid) {
+        deleteTokenByUser(getUser(uuid));
+    }
+
+    @Override
+    public void deleteTokenByUser(UserEntity userEntity){
+        Long id = userEntity.getToken().getId();
+        userEntity.setToken(null);
+        userService.editUser(userEntity);
+        tokenRepository.deleteById(id);
     }
 
 }

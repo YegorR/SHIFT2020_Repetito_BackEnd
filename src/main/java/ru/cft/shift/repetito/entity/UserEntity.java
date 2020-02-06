@@ -65,7 +65,7 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<SubjectEntity> subjects;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "token_id")
     private TokenEntity token;
 

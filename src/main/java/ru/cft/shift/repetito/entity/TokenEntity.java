@@ -13,7 +13,7 @@ public class TokenEntity {
     @Column(name="id")
     private Long id;
 
-    @OneToOne(mappedBy = "token", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "token", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private UserEntity user;
 
     @Column(name = "uuid")
