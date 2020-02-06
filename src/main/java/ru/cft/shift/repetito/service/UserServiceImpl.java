@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         else return null;
     }
 
-    @Override
+    /*@Override
     public List<UserSimpleResponse> getUserList(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset) {
         List<UserSimpleResponse> userSimpleResponseList = new ArrayList<>();
         UserSpecification spec = new UserSpecification(new SearchCriteria("isTeacher", ":", onlyTeacher));
@@ -38,11 +38,16 @@ public class UserServiceImpl implements UserService {
             userSimpleResponseList.add(new UserSimpleResponse(user));
         }
         return userSimpleResponseList;
-    }
+    }*/
 
     @Override
     public UserEntity editUser(UserEntity user) {
         return register(user);
+    }
+
+    @Override
+    public  UserEntity getUserByEmailAndPassword(String email, String password){
+        return userRepository.findByEmailAndPassword(email, password);
     }
 
     @Override

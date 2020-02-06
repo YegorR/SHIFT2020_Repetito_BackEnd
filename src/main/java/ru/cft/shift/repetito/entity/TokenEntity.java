@@ -1,5 +1,5 @@
 package ru.cft.shift.repetito.entity;
-/*
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -31,4 +31,3 @@ public class TokenEntity {
     }
 }
 
- */
