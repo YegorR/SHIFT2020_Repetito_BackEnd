@@ -3,12 +3,14 @@ package ru.cft.shift.repetito.service;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 
+import java.util.List;
+
 public interface UserService {
     UserEntity register(UserEntity user);
 
-    UserFullResponse getUserById(Long id);
+    UserEntity getUserById(Long id);
 
-    /*List<UserSimpleResponse> getUserList(boolean onlyTeacher, String faculty, int course, List<String> subject, String degree, String search, int limit, int offset);*/
+    List<UserEntity> getUserList(UserFilter userFilter);
 
     UserEntity editUser(UserEntity user);
 
