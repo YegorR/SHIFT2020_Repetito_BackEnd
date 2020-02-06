@@ -1,13 +1,16 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.EntityResponse;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,7 +24,7 @@ public class UserController {
             method = RequestMethod.GET,
             produces = "application/json"
     )
-    public List<UserSimpleResponse> getList(
+    public ResponseEntity<?> getList(
             @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
             @RequestParam(name = "course", defaultValue = "1") int course,
@@ -31,7 +34,8 @@ public class UserController {
             @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "offset", defaultValue = "0") int offset
     ) {
-        return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
+        //return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
+        return ResponseEntity.ok(new ArrayList<UserSimpleResponse>());
     }
 
     @RequestMapping(
@@ -39,8 +43,8 @@ public class UserController {
             path = "/{id}",
             produces = "application/json"
     )
-    public UserFullResponse get(@PathVariable(name = "id") Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<?> get(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @RequestMapping(
@@ -48,9 +52,9 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public UserEntity add(@RequestBody UserParamsRequest userParamsRequest) {
+    public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
-        return userService.register(user);
+        return ResponseEntity.ok(userService.register(user));
     }
 
     @RequestMapping(
@@ -59,10 +63,10 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public UserEntity edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id) {
+    public ResponseEntity<?> edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id) {
         UserEntity user = new UserEntity(userParamsRequest);
         user.setId(id);
-        return userService.editUser(user);
+        return ResponseEntity.ok(userService.editUser(user));
     }
 
 }
