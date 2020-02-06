@@ -5,7 +5,6 @@ import ru.cft.shift.repetito.entity.SubjectEntity;
 
 import java.util.List;
 
-@Service
 public interface SubjectService {
     List<SubjectEntity> getAllSubjects();
 }

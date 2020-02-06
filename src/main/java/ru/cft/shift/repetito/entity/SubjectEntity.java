@@ -7,7 +7,7 @@ import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table("subjects")
+@Table(name="subjects")
 public class SubjectEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)

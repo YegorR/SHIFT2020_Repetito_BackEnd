@@ -11,6 +11,7 @@ import ru.cft.shift.repetito.service.SubjectService;
 
 @RestController
 public class SubjectController {
+
     @Autowired
     private SubjectService subjectService;
 

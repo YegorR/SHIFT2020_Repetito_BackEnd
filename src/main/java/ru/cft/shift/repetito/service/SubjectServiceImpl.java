@@ -7,7 +7,7 @@ import ru.cft.shift.repetito.repository.SubjectRepository;
 
 import java.util.List;
 @Service
-public class SubjectServiceImpl {
+public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     private SubjectRepository subjectRepository;
