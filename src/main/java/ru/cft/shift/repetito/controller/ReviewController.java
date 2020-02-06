@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.ReviewEntity;
+import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.params.request.ReviewRequest;
 import ru.cft.shift.repetito.service.ReviewService;
 import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserService;
@@ -36,14 +38,14 @@ public class ReviewController {
             consumes="application/json",
             produces="application/json"
     ) public ResponseEntity<?> add(
-            @RequestParam (name="mark") int mark,
-            @RequestParam (name="comment") String comment,
-            @PathVariable (name="id") Long teacherId,
+            @RequestBody ReviewRequest reviewRequest,
+            @PathVariable (name="id") Long id,
             @RequestHeader ("Authorization") UUID token
     ) {
-        Long reviewerId = tokenService.getUser(token).getId();
-        ReviewEntity review = new ReviewEntity(mark, comment, reviewerId, teacherId );
-        review.setRepetitor(userService.getUserById(teacherId));
+        UserEntity user_teacher = userService.getUserById(id);
+        UserEntity user_reviewer = tokenService.getUser(token);
+
+        ReviewEntity review = new ReviewEntity(reviewRequest.getMark(), reviewRequest.getComment(),user_reviewer.getId(), user_teacher.getId() );
         return ResponseEntity.ok(reviewService.add(review));
     }
 }

@@ -50,10 +50,7 @@ public class UserEntity {
 
     @Column(name = "avg_mark")
     private float avgMark;
-/*
-    @OneToOne(cascade = CascadeType.ALL)
-    private TokenEntity token;
-*/
+
     public Set<SubjectEntity> getSubjects() {
         return subjects;
     }

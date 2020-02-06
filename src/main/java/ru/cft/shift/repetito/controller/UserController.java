@@ -86,4 +86,11 @@ public class UserController {
         return ResponseEntity.ok(userService.editUser(user));
     }
 
+    @RequestMapping(
+            method=RequestMethod.DELETE,
+            path="/{id}",
+            produces="application/json"
+    ) public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
+        return ResponseEntity.ok(userService.deleteUser(id));
+    }
 }
