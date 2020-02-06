@@ -1,4 +1,4 @@
-package ru.cft.shift.repetito.params;
+package ru.cft.shift.repetito.params.request;
 
 public class LoginFormRequest {
     private String email;
