@@ -9,6 +9,8 @@ import java.util.UUID;
 @Entity
 public class TokenEntity {
     @Id
+    private Long id;
+
     @OneToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 
