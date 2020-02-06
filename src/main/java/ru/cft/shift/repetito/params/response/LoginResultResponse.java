@@ -9,15 +9,7 @@ public class LoginResultResponse {
 
     private UUID uuid;
 
-    private UserEntity userEntity;
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
+    private UserEntity user;
 
     public boolean isSuccessful() {
         return successful;
@@ -25,5 +17,21 @@ public class LoginResultResponse {
 
     public void setSuccessful(boolean successful) {
         this.successful = successful;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

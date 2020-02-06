@@ -50,10 +50,10 @@ public class UserEntity {
 
     @Column(name = "avg_mark")
     private float avgMark;
-
+/*
     @OneToOne(cascade = CascadeType.ALL)
     private TokenEntity token;
-
+*/
     public Set<SubjectEntity> getSubjects() {
         return subjects;
     }
@@ -66,6 +66,8 @@ public class UserEntity {
     private Set<SubjectEntity> subjects;
 
     public UserEntity(UserParamsRequest userParamsRequest){
+        this.email=userParamsRequest.getEmail();
+        this.password=userParamsRequest.getPassword();
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
         this.patronymic = userParamsRequest.getParonym();
@@ -182,7 +184,7 @@ public class UserEntity {
     public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
     }
-
+/*
     public TokenEntity getToken() {
         return token;
     }
@@ -190,4 +192,6 @@ public class UserEntity {
     public void setToken(TokenEntity token) {
         this.token = token;
     }
+
+ */
 }

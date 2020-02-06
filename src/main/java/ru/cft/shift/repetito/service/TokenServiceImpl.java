@@ -20,10 +20,11 @@ public class TokenServiceImpl implements TokenService{
     @Override
     public TokenEntity getToken(UserEntity userEntity){
         TokenEntity tokenEntity = new TokenEntity();
-
+        //tokenRepository.save(tokenEntity);
         tokenEntity.setUser(userEntity);
         tokenEntity.setUuid(UUID.randomUUID());
-        userEntity.setToken(tokenEntity);
+        //userEntity.setToken(tokenEntity);
+        tokenRepository.save(tokenEntity);
         userService.editUser(userEntity);
         return tokenEntity;
     }

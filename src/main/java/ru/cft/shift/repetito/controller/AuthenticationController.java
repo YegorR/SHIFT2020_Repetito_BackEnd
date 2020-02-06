@@ -1,7 +1,6 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -34,15 +33,14 @@ public class AuthenticationController {
         LoginResultResponse loginResultResponse = new LoginResultResponse();
         if (tokenEntity != null) {
             loginResultResponse.setSuccessful(true);
-            loginResultResponse.setUserEntity(tokenEntity.getUser());
+            loginResultResponse.setUser(tokenEntity.getUser());
             loginResultResponse.setUuid(tokenEntity.getUuid());
-            return ResponseEntity.ok(loginFormRequest);
         } else {
             loginResultResponse.setSuccessful(false);
-            loginResultResponse.setUserEntity(null);
+            loginResultResponse.setUser(null);
             loginResultResponse.setUuid(null);
-            return ResponseEntity.ok(loginFormRequest);
         }
+        return ResponseEntity.ok(loginResultResponse);
     }
     @RequestMapping("/logout")
     public void logout(@RequestHeader("Authorization") UUID uuid){

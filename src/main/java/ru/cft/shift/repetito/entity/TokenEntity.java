@@ -1,14 +1,24 @@
 package ru.cft.shift.repetito.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
+@Table(name="tokens")
 public class TokenEntity {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name="id")
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)

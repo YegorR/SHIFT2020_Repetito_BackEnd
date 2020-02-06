@@ -49,7 +49,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public  UserEntity getUserByEmailAndPassword(String email, String password){
-        return userRepository.findByEmailAndPassword(email, password);
+        Optional<UserEntity> user = userRepository.findByEmailAndPassword(email, password);
+        if (user!=null)
+            return user.get();
+        else return null;
     }
 
     @Override
