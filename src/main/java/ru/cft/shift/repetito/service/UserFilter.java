@@ -15,6 +15,10 @@ public class UserFilter {
 
     private boolean isTeacher;
 
+    private int limit;
+
+    private int offset;
+
     public List<String> getFaculty() {
         return faculty;
     }
@@ -61,5 +65,21 @@ public class UserFilter {
 
     public void setTeacher(boolean teacher) {
         isTeacher = teacher;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 }
