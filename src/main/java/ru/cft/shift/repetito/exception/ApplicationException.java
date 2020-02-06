@@ -10,4 +10,5 @@ public class ApplicationException extends Exception {
          super(message,throwable);
     }
 
+
 }
