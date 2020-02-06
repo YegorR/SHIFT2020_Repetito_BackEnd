@@ -1,17 +1,13 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.cft.shift.repetito.entity.TokenEntity;
-import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.request.LoginFormRequest;
 import ru.cft.shift.repetito.params.response.LoginResultResponse;
 import ru.cft.shift.repetito.service.AuthenticationService;
-import ru.cft.shift.repetito.service.TokenService;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -20,26 +16,20 @@ import java.io.IOException;
 public class AuthenticationController {
 
     @Autowired
-    TokenService tokenService;
-
-    @Autowired
     AuthenticationService authenticationService;
 
     @RequestMapping("")
-    public ResponseEntity<?> login(@RequestBody LoginFormRequest loginFormRequest, HttpServletResponse httpServletResponse) throws IOException {
-        String password = loginFormRequest.getPassword();
-        String email = loginFormRequest.getEmail();
-        UserEntity userEntity = authenticationService.login(email, password);
-        LoginResultResponse loginResultResponse = new LoginResultResponse();
-        if (userEntity != null) {
-            TokenEntity tokenEntity = tokenService.getToken(userEntity);
+    public LoginResultResponse login(@RequestBody LoginFormRequest loginFormRequest, HttpServletResponse httpServletResponse) throws IOException {
+        TokenEntity tokenEntity = authenticationService.login(loginFormRequest.getEmail(), loginFormRequest.getPassword());
+        if (tokenEntity != null) {
+            LoginResultResponse loginResultResponse = new LoginResultResponse();
             loginResultResponse.setSuccessful(true);
-            loginResultResponse.setUserEntity(userEntity);
+            loginResultResponse.setUserEntity(tokenEntity.getUser());
             loginResultResponse.setUuid(tokenEntity.getUuid());
+            return loginResultResponse;
         } else {
-            //httpServletResponse.sendError(406, "Email or Password are wrong");
-            loginResultResponse.setSuccessful(false);
+            httpServletResponse.sendError(406, "Email or Password are wrong");
+            return null;
         }
-        return ResponseEntity.ok(loginResultResponse);
     }
 }

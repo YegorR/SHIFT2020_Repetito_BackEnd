@@ -14,13 +14,17 @@ public class TokenServiceImpl implements TokenService{
 
     @Autowired
     TokenRepository tokenRepository;
+    @Autowired
+    UserService userService;
 
     @Override
     public TokenEntity getToken(UserEntity userEntity){
         TokenEntity tokenEntity = new TokenEntity();
+
         tokenEntity.setUser(userEntity);
         tokenEntity.setUuid(UUID.randomUUID());
-        tokenRepository.save(tokenEntity);
+        userEntity.setToken(tokenEntity);
+        userService.editUser(userEntity);
         return tokenEntity;
     }
 
