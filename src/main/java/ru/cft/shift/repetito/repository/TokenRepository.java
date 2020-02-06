@@ -6,7 +6,7 @@ import ru.cft.shift.repetito.entity.TokenEntity;
 import java.util.UUID;
 
 public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
-    UserProjection findByUuid(UUID uuid);
+    TokenEntity findByUuid(UUID uuid);
 
     Boolean existsByUuid(UUID uuid);
 

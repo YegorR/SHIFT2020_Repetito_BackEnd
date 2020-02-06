@@ -1,10 +1,7 @@
 package ru.cft.shift.repetito.service;
 
 import ru.cft.shift.repetito.entity.UserEntity;
-import ru.cft.shift.repetito.entity.response.UserFullResponse;
-import ru.cft.shift.repetito.entity.response.UserSimpleResponse;
-
-import java.util.List;
+import ru.cft.shift.repetito.params.response.UserFullResponse;
 
 import java.util.List;
 
@@ -19,6 +16,6 @@ public interface UserService {
 
     UserEntity getUserByEmailAndPassword(String email, String password);
 
-    void deleteUser(Long id);
+    boolean deleteUser(Long id);
 
 }

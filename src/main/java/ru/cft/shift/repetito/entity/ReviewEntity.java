@@ -1,16 +1,14 @@
 package ru.cft.shift.repetito.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name="reviews")
 public class ReviewEntity {
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(name = "mark")
