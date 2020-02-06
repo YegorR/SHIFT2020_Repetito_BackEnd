@@ -26,7 +26,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public void logout(UserEntity userEntity){
-
+    public void logout(UUID uuid){
+        tokenService.deleteByUuid(uuid);
     }
 }

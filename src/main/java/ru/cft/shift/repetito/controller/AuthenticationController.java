@@ -7,6 +7,7 @@ import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.request.LoginFormRequest;
 import ru.cft.shift.repetito.params.response.LoginResultResponse;
+import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.service.AuthenticationService;
 import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserService;
@@ -33,7 +34,7 @@ public class AuthenticationController {
         LoginResultResponse loginResultResponse = new LoginResultResponse();
         if (tokenEntity != null) {
             loginResultResponse.setSuccessful(true);
-            loginResultResponse.setUser(tokenEntity.getUser());
+            loginResultResponse.setUser(new UserFullResponse(tokenEntity.getUser()));
             loginResultResponse.setUuid(tokenEntity.getUuid());
         } else {
             loginResultResponse.setSuccessful(false);

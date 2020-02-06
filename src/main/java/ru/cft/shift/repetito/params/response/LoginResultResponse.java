@@ -9,7 +9,7 @@ public class LoginResultResponse {
 
     private UUID uuid;
 
-    private UserEntity user;
+    private UserFullResponse user;
 
     public boolean isSuccessful() {
         return successful;
@@ -27,11 +27,11 @@ public class LoginResultResponse {
         this.uuid = uuid;
     }
 
-    public UserEntity getUser() {
+    public UserFullResponse getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(UserFullResponse user) {
         this.user = user;
     }
 }
