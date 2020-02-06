@@ -1,6 +1,6 @@
 package ru.cft.shift.repetito.entity;
 
-import ru.cft.shift.repetito.params.UserParamsRequest;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -25,8 +25,8 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "paronym") //вообще middle_name надо по идее
-    private String paronym;
+    @Column(name = "patronymic") //вообще middle_name надо по идее
+    private String patronymic;
 
     @Column(name = "faculty")
     private String faculty;
@@ -49,18 +49,18 @@ public class UserEntity {
     @Column(name = "avg_mark")
     private float avgMark;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private TokenEntity token;
+
     public UserEntity(UserParamsRequest userParamsRequest){
-        this.email = userParamsRequest.getEmail();
-        this.password=userParamsRequest.getPassword();
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
-        this.paronym = userParamsRequest.getParonym();
+        this.patronymic = userParamsRequest.getParonym();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.isTeacher=userParamsRequest.getIsTeacher();
+        this.isTeacher =userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
-        this.price=userParamsRequest.getPrice();
     }
 
     public UserEntity() {
@@ -106,12 +106,12 @@ public class UserEntity {
         this.lastName = lastName;
     }
 
-    public String getParonym() {
-        return paronym;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setParonym(String paronym) {
-        this.paronym = paronym;
+    public void setPatronymic(String paronym) {
+        this.patronymic = paronym;
     }
 
     public String getFaculty() {
@@ -129,8 +129,6 @@ public class UserEntity {
     public void setCourse(int course) {
         this.course = course;
     }
-
-
 
     public String getDegree() {
         return degree;
@@ -153,7 +151,7 @@ public class UserEntity {
     }
 
     public void setIsTeacher(Boolean teacher) {
-        isTeacher = teacher;
+        this.isTeacher = teacher;
     }
 
     public int getPrice() {
@@ -170,5 +168,13 @@ public class UserEntity {
 
     public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
+    }
+
+    public TokenEntity getToken() {
+        return token;
+    }
+
+    public void setToken(TokenEntity token) {
+        this.token = token;
     }
 }

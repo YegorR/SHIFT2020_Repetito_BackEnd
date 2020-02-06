@@ -1,7 +1,5 @@
-package ru.cft.shift.repetito.entity.response;
+package ru.cft.shift.repetito.params.response;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.cft.shift.repetito.entity.UserEntity;
 
 import java.util.List;
@@ -11,12 +9,13 @@ public class UserFullResponse {
         this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
-        this.paronym = user.getParonym();
+        this.paronym = user.getPatronymic();
         this.faculty = user.getFaculty();
         this.course = user.getCourse();
         this.degree = user.getDegree();
         this.about = user.getAbout();
         this.isTeacher=user.getIsTeacher();
+        this.price = user.getPrice();
     }
     private Long id;
     private String firstName;
@@ -28,6 +27,7 @@ public class UserFullResponse {
     private String degree;
     private String about;
     private Boolean isTeacher;
+    private int price;
 
     public Boolean getIsTeacher() {
         return isTeacher;
