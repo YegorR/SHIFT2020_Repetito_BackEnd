@@ -45,7 +45,11 @@ public class ReviewController {
         UserEntity user_teacher = userService.getUserById(id);
         UserEntity user_reviewer = tokenService.getUser(token);
 
-        ReviewEntity review = new ReviewEntity(reviewRequest.getMark(), reviewRequest.getComment(),user_reviewer.getId(), user_teacher.getId() );
+        ReviewEntity review = new ReviewEntity();
+        review.setComment(reviewRequest.getComment());
+        review.setMark(reviewRequest.getMark());
+        review.setReviewer(user_reviewer);
+        review.setTeacher(user_teacher);
         return ResponseEntity.ok(reviewService.add(review));
     }
 }

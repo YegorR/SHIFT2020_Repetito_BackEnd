@@ -65,8 +65,8 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<SubjectEntity> subjects;
 
-    @OneToOne
-    @JoinColumn("token_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "token_id")
     private TokenEntity token;
 
     public UserEntity(UserParamsRequest userParamsRequest) {

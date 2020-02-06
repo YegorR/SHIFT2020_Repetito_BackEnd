@@ -50,9 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public  UserEntity getUserByEmailAndPassword(String email, String password){
         Optional<UserEntity> user = userRepository.findByEmailAndPassword(email, password);
-        if (user!=null)
-            return user.get();
-        else return null;
+        return user.orElse(null);
     }
 
     @Override
