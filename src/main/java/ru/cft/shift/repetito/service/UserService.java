@@ -7,13 +7,13 @@ import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import java.util.List;
 
 public interface UserService {
-    UserEntity register(UserEntity user);
+    UserFullResponse register(UserEntity user);
 
     UserEntity getUserById(Long id);
 
     List<UserSimpleResponse> getUserList(UserFilter userFilter);
 
-    UserEntity editUser(UserEntity user);
+    UserFullResponse editUser(UserEntity user);
 
     UserEntity getUserByEmailAndPassword(String email, String password);
 

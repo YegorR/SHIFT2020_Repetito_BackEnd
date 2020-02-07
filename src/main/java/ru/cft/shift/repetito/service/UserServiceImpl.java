@@ -17,8 +17,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserEntity register(UserEntity user) {
-        return userRepository.save(user);
+    public UserFullResponse register(UserEntity user) {
+        userRepository.save(user);
+        return new UserFullResponse(user);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity editUser(UserEntity user) {
+    public UserFullResponse editUser(UserEntity user) {
         return register(user);
     }
 
