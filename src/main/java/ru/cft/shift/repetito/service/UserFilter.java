@@ -7,7 +7,7 @@ public class UserFilter {
 
     private long course;
 
-    private List<String> subject;
+    private int subject;
 
     private String degree;
 
@@ -35,11 +35,11 @@ public class UserFilter {
         this.course = course;
     }
 
-    public List<String> getSubject() {
+    public int getSubject() {
         return subject;
     }
 
-    public void setSubject(List<String> subject) {
+    public void setSubject(int subject) {
         this.subject = subject;
     }
 

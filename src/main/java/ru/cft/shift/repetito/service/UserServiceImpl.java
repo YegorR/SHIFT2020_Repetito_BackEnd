@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserSimpleResponse> getUserList(UserFilter userFilter) {
         OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(userFilter.getOffset(), userFilter.getLimit());
-        List<UserEntity> users = userRepository.findByFilters(userFilter.getAbout(), userFilter.getCourse(), userFilter.getFaculty(), userFilter.getDegree(), userFilter.isTeacher(), pageable);
+        List<UserEntity> users = userRepository.findByFilters(userFilter.getAbout(), userFilter.getCourse(), userFilter.getFaculty(), userFilter.getDegree(), userFilter.isTeacher(), userFilter.getSubject(), pageable);
         List<UserSimpleResponse> userResponse = new ArrayList<>();
         for (UserEntity u: users)
             userResponse.add(new UserSimpleResponse(u));

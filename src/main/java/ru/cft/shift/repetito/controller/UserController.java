@@ -39,7 +39,7 @@ public class UserController {
             @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
             @RequestParam(name = "course", defaultValue = "0") long course,
-            @RequestParam(name = "subject", defaultValue = "null") List<String> subject,
+            @RequestParam(name = "subject", defaultValue = "0") int subject,
             @RequestParam(name = "degree", defaultValue = "null") String degree,
             @RequestParam(name = "search", defaultValue = "null") String search,
             @RequestParam(name = "limit", defaultValue = "10") int limit,
