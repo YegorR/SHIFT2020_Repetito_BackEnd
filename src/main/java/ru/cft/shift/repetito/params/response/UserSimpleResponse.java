@@ -11,6 +11,7 @@ public class UserSimpleResponse {
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
         this.about = user.getAbout();
+        this.isTeacher = user.getTeacher();
     }
 
     private Long id;
@@ -20,6 +21,7 @@ public class UserSimpleResponse {
     private int price;
     private float avgMark;
     private String about;
+    private boolean isTeacher;
 
     public Long getId() {
         return id;
@@ -75,5 +77,13 @@ public class UserSimpleResponse {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public boolean isTeacher() {
+        return isTeacher;
+    }
+
+    public void setTeacher(boolean teacher) {
+        isTeacher = teacher;
     }
 }
