@@ -48,7 +48,7 @@ public class UserEntity {
     @Column(name = "teacher")
     private Boolean teacher;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
 
     @Column(name = "avg_mark")
