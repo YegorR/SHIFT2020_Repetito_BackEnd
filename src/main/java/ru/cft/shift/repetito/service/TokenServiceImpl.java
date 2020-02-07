@@ -19,7 +19,7 @@ public class TokenServiceImpl implements TokenService {
     private UserService userService;
 
     @Override
-    public TokenEntity getToken(UserEntity userEntity) {
+    public TokenEntity getNewToken(UserEntity userEntity) {
         if (userEntity.getToken() != null) {
             deleteTokenByUser(userEntity);
             userEntity.setToken(null);
@@ -39,22 +39,22 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public UserEntity getUser(UUID uuid) {
-        if (uuid != null)
-            return tokenRepository.findByUuid(uuid).getUser();
-        else return null;
+            if (checkToken(uuid))
+                return tokenRepository.findByUuid(uuid).getUser();
+            else return null;
     }
 
     @Override
     public void deleteTokenByUuid(UUID uuid) {
-        deleteTokenByUser(getUser(uuid));
+            deleteTokenByUser(getUser(uuid));
     }
 
     @Override
     public void deleteTokenByUser(UserEntity userEntity){
-        Long id = userEntity.getToken().getId();
-        userEntity.setToken(null);
-        userService.editUser(userEntity);
-        tokenRepository.deleteById(id);
+            Long id = userEntity.getToken().getId();
+            userEntity.setToken(null);
+            userService.editUser(userEntity);
+            tokenRepository.deleteById(id);
     }
 
 }
