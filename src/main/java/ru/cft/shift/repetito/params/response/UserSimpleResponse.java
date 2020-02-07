@@ -11,7 +11,7 @@ public class UserSimpleResponse {
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
         this.about = user.getAbout();
-        this.isTeacher = user.getTeacher();
+        this.isTeacher = user.getIsTeacher();
     }
 
     private Long id;
