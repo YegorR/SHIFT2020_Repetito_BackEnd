@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.exception.NotAuthorisedException;
 import ru.cft.shift.repetito.params.request.LoginFormRequest;
 import ru.cft.shift.repetito.params.response.LoginResultResponse;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
@@ -42,9 +43,9 @@ public class AuthenticationController {
             path = "/logout",
             method = RequestMethod.POST
     )
-    public ResponseEntity<?> logout(@RequestHeader("Authorization") UUID uuid){
+    public ResponseEntity<?> logout(@RequestHeader(name = "Authorization", required = false) UUID uuid) throws NotAuthorisedException {
         if (authenticationService.logout(uuid))
             return ResponseEntity.ok().body("You've logged out");
-        else return ResponseEntity.status(403).body("Forbidden");
+        else throw new NotAuthorisedException();
     }
 }

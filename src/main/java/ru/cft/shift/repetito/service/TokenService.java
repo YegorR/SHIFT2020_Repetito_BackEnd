@@ -12,6 +12,8 @@ public interface TokenService {
 
     TokenEntity getNewToken(UserEntity userEntity);
 
+    TokenEntity getTokenByUuid(UUID uuid);
+
     UserEntity getUser(UUID uuid);
 
     void deleteTokenByUuid(UUID uuid);

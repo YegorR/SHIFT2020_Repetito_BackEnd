@@ -7,6 +7,7 @@ import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.repository.TokenRepository;
 import ru.cft.shift.repetito.repository.UserProjection;
+import sun.tools.jstat.Token;
 
 import java.util.UUID;
 
@@ -30,6 +31,11 @@ public class TokenServiceImpl implements TokenService {
         userEntity.setToken(tokenEntity);
         userService.editUser(userEntity);
         return tokenEntity;
+    }
+
+    @Override
+    public TokenEntity getTokenByUuid(UUID uuid){
+        return tokenRepository.findByUuid(uuid);
     }
 
     @Override
