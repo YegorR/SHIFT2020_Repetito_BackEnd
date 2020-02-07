@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
-    @Query("from UserEntity u where (u.about = :search or :search='null') and (u.course = :course or :course=0) and (u.faculty = :faculty or :faculty='null') and (u.degree = :degree or :degree ='null') and (u.teacher = :isTeacher or :isTeacher='false') and (:subject in (select a.id from UserEntity b join b.subjects a) or :subject=0)")
+    @Query("from UserEntity u where (u.about = :search or :search='null') and (u.course = :course or :course=0) and (u.faculty = :faculty or :faculty='null') and (u.degree = :degree or :degree ='null') and (u.isTeacher = :isTeacher or :isTeacher='false') and (:subject in (select a.id from UserEntity b join b.subjects a) or :subject=0)")
     List<UserEntity> findByFilters(@Param("search") String search, @Param("course") long course, @Param("faculty") String faculty, @Param("degree") String degree, @Param("isTeacher") boolean isTeacher, @Param("subject") int subject , Pageable pageable);
 
     Optional<UserEntity> findByEmailAndPassword(String email, String password);
