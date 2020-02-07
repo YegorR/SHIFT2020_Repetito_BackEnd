@@ -29,6 +29,7 @@ public class UserController {
             method = RequestMethod.GET,
             produces = "application/json"
     )
+    //получить список пользователей по фильтру
     public ResponseEntity<?> getList(
             @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
@@ -56,6 +57,7 @@ public class UserController {
             path = "/{id}",
             produces = "application/json"
     )
+    //получить данные пользователя
     public ResponseEntity<?> get(@PathVariable(name = "id") Long id,
                                  @RequestHeader(name = "Authorization", required = false) UUID uuid) throws NotAuthorisedException {
         if (tokenService.checkToken(uuid)) {
@@ -69,8 +71,10 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
+    //зарегистрировать пользователя
     public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
+
         return ResponseEntity.ok(userService.register(user));
     }
 
@@ -80,6 +84,7 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
+    //метод изменения данных о пользователе
     public ResponseEntity<?> edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id,
                                   @RequestHeader(name = "Authorization", required = false) UUID uuid) throws AccessIsForbiddenException {
         UserEntity userEditForm = new UserEntity(userParamsRequest);
@@ -98,7 +103,9 @@ public class UserController {
             method=RequestMethod.DELETE,
             path="/{id}",
             produces="application/json"
-    ) public ResponseEntity<?> delete(@PathVariable(name="id") Long id,
+    )
+    //Удаление пользователя
+    public ResponseEntity<?> delete(@PathVariable(name="id") Long id,
                                       @RequestHeader (value = "Authorization", required = false) UUID uuid) throws AccessIsForbiddenException {
         UserEntity userOfToken =  tokenService.getUser(uuid);
         if (userOfToken != null && userOfToken.getId() == id) {
