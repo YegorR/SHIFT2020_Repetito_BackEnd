@@ -9,7 +9,7 @@ import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_table")
 public class UserEntity {
     @Id
     @Column(name = "id")
