@@ -4,6 +4,7 @@ import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
 import javax.validation.metadata.CascadableDescriptor;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -59,12 +60,12 @@ public class UserEntity {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<ReviewEntity> receivedReviews;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "user_subject",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<SubjectEntity> subjects;
+    private List<SubjectEntity> subjects;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "token_id")
@@ -81,7 +82,7 @@ public class UserEntity {
         this.teacher = userParamsRequest.getIsTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
-        this.price=userParamsRequest.getPrice();
+        this.price = userParamsRequest.getPrice();
     }
 
     public UserEntity() {
@@ -167,11 +168,11 @@ public class UserEntity {
         this.about = about;
     }
 
-    public Boolean getTeacher() {
+    public Boolean getIsTeacher() {
         return teacher;
     }
 
-    public void setTeacher(Boolean teacher) {
+    public void setIsTeacher(Boolean teacher) {
         this.teacher = teacher;
     }
 
@@ -191,12 +192,27 @@ public class UserEntity {
         this.avgMark = avgMark;
     }
 
+    public List<ReviewEntity> getWrittenReviews() {
+        return writtenReviews;
+    }
 
-    public Set<SubjectEntity> getSubjects() {
+    public void setWrittenReviews(List<ReviewEntity> writtenReviews) {
+        this.writtenReviews = writtenReviews;
+    }
+
+    public List<ReviewEntity> getReceivedReviews() {
+        return receivedReviews;
+    }
+
+    public void setReceivedReviews(List<ReviewEntity> receivedReviews) {
+        this.receivedReviews = receivedReviews;
+    }
+
+    public List<SubjectEntity> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(Set<SubjectEntity> subjects) {
+    public void setSubjects(List<SubjectEntity> subjects) {
         this.subjects = subjects;
     }
 
@@ -204,7 +220,10 @@ public class UserEntity {
         return token;
     }
 
-    public void setToken(TokenEntity tokenEntity) {
-        this.token = tokenEntity;
+    public void setToken(TokenEntity token) {
+        this.token = token;
     }
 }
+
+
+

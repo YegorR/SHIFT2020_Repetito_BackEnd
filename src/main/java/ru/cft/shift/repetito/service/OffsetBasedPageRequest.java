@@ -16,11 +16,11 @@ public class OffsetBasedPageRequest implements Pageable, Serializable {
 
     public OffsetBasedPageRequest(int offset, int limit, Sort sort) {
         if (offset < 0) {
-            offset = 10;
+            offset = 0;
         }
 
         if (limit < 1) {
-            limit = 1;
+            limit = 10;
         }
         this.limit = limit;
         this.offset = offset;

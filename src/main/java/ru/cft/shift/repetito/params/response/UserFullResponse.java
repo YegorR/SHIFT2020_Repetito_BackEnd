@@ -17,7 +17,7 @@ public class UserFullResponse {
         this.course = user.getCourse();
         this.degree = user.getDegree();
         this.about = user.getAbout();
-        this.isTeacher = user.getTeacher();
+        this.isTeacher = user.getIsTeacher();
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
         this.subjects=user.getSubjects();
@@ -35,13 +35,13 @@ public class UserFullResponse {
     private Boolean isTeacher;
     private int price;
     private float avgMark;
-    private Set<SubjectEntity> subjects;
+    private List<SubjectEntity> subjects;
 
-    public Set<SubjectEntity> getSubjects() {
+    public List<SubjectEntity> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(Set<SubjectEntity> subjects) {
+    public void setSubjects(List<SubjectEntity> subjects) {
         this.subjects = subjects;
     }
 
