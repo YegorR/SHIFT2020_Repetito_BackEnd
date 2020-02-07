@@ -1,6 +1,7 @@
 package ru.cft.shift.repetito.service;
 
 import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 
@@ -18,5 +19,7 @@ public interface UserService {
     UserEntity getUserByEmailAndPassword(String email, String password);
 
     boolean deleteUser(Long id);
+
+    UserEntity UserEntityEdit (UserParamsRequest userParamsRequest, UserEntity oldUser);
 
 }

@@ -78,9 +78,12 @@ public class UserController {
     public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
         List<SubjectEntity> subjectEntities = new ArrayList<>();
-        for (Long id: userParamsRequest.getSubject())
-            subjectEntities.add(subjectService.getSubjectById(id));
-        user.setSubjects(subjectEntities);
+        List<Long> userParamsRequestSabjects = userParamsRequest.getSubject();
+        if (userParamsRequestSabjects != null) {
+            for (Long id : userParamsRequest.getSubject())
+                subjectEntities.add(subjectService.getSubjectById(id));
+            user.setSubjects(subjectEntities);
+        }
         return ResponseEntity.ok(userService.register(user));
     }
 
@@ -92,20 +95,20 @@ public class UserController {
     )
     public ResponseEntity<?> edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id,
                                   @RequestHeader(name = "Authorization", required = false) UUID uuid) throws AccessIsForbiddenException {
-        UserEntity userEditForm = new UserEntity(userParamsRequest);
-        List<SubjectEntity> subjectEntities = new ArrayList<>();
-        for (Long subjectId: userParamsRequest.getSubject())
-            subjectEntities.add(subjectService.getSubjectById(subjectId));
-        userEditForm.setSubjects(subjectEntities);
         UserEntity userOfToken = tokenService.getUser(uuid);
         UserEntity userOfId = userService.getUserById(id);
         if (userOfToken != null && userOfId != null && userOfId == userOfToken){
+            UserEntity userEditForm = userService.UserEntityEdit(userParamsRequest, userOfId);
             TokenEntity tokenEntity = userOfId.getToken();
-            userEditForm.setId(id);
+            List<SubjectEntity> subjectEntities = new ArrayList<>();
+            List<Long> userParamsRequestSabjects = userParamsRequest.getSubject();
+            if (userParamsRequestSabjects != null) {
+                for (Long subjectId : userParamsRequest.getSubject())
+                    subjectEntities.add(subjectService.getSubjectById(subjectId));
+                userEditForm.setSubjects(subjectEntities);
+            }
             tokenEntity.setUser(userEditForm);
             userEditForm.setToken(tokenEntity);
-            userEditForm.setPassword(userOfId.getPassword());
-            userEditForm.setEmail(userOfId.getEmail());
             return ResponseEntity.ok(userService.editUser(userEditForm));
         } else throw new AccessIsForbiddenException(uuid.toString());
     }

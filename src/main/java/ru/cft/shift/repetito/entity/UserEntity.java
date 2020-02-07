@@ -3,10 +3,7 @@ package ru.cft.shift.repetito.entity;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
-import javax.validation.metadata.CascadableDescriptor;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 

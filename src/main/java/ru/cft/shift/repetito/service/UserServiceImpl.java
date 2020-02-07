@@ -3,6 +3,7 @@ package ru.cft.shift.repetito.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
@@ -64,5 +65,52 @@ public class UserServiceImpl implements UserService {
     public boolean deleteUser(Long id){
         userRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public UserEntity UserEntityEdit (UserParamsRequest userParamsRequest, UserEntity oldUser){
+        String email = userParamsRequest.getEmail();
+        if (email != null)
+            oldUser.setEmail(email);
+
+        String password = userParamsRequest.getPassword();
+        if (password != null)
+            oldUser.setPassword(password);
+
+        String firstName = userParamsRequest.getFirstName();
+        if (firstName != null)
+            oldUser.setFirstName(firstName);
+
+        String lastName = userParamsRequest.getLastName();
+        if (lastName != null)
+            oldUser.setLastName(lastName);
+
+        String patronymic = userParamsRequest.getPatronymic();
+        if (patronymic != null)
+            oldUser.setPatronymic(patronymic);
+
+        String faculty = userParamsRequest.getFaculty();
+        if (faculty != null)
+            oldUser.setFaculty(faculty);
+
+        long course = userParamsRequest.getCourse();
+        if (course != 0)
+            oldUser.setCourse(course);
+
+        oldUser.setIsTeacher(userParamsRequest.getIsTeacher());
+
+        String degree = userParamsRequest.getDegree();
+        if (degree != null)
+            oldUser.setDegree(degree);
+
+        String about = userParamsRequest.getAbout();
+        if (about != null)
+            oldUser.setAbout(about);
+
+        int price = userParamsRequest.getPrice();
+        if (price != 0)
+            oldUser.setPrice(price);
+
+        return oldUser;
     }
 }
