@@ -74,6 +74,7 @@ public class UserController {
     //зарегистрировать пользователя
     public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
+
         return ResponseEntity.ok(userService.register(user));
     }
 
