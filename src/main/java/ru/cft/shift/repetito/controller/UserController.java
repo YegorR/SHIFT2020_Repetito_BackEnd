@@ -40,8 +40,6 @@ public class UserController {
             @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "offset", defaultValue = "0") int offset
     ) {
-        //return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
-        //return ResponseEntity.ok(new ArrayList<UserSimpleResponse>());
         UserFilter userFilter = new UserFilter();
         userFilter.setTeacher(isTeacher);
         userFilter.setFaculty(new ArrayList<>(Collections.singletonList(faculty)));
@@ -51,10 +49,7 @@ public class UserController {
         userFilter.setAbout(search);
         userFilter.setLimit(limit);
         userFilter.setOffset(offset);
-        List<UserEntity> users = userService.getUserList(userFilter);
-        return ResponseEntity.ok(users.stream()
-                .map(UserSimpleResponse::new)
-                .collect(Collectors.toCollection(ArrayList::new)));
+        return ResponseEntity.ok(userService.getUserList(userFilter));
     }
 
     @RequestMapping(
