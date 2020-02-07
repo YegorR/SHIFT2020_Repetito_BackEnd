@@ -15,7 +15,6 @@ import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserFilter;
 import ru.cft.shift.repetito.service.UserService;
 
-import javax.security.auth.Subject;
 import java.util.*;
 
 @RestController
@@ -78,7 +77,7 @@ public class UserController {
     public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
         List<SubjectEntity> subjectEntities = new ArrayList<>();
-        for (Long id: userParamsRequest.getSubject())
+        for (Long id: userParamsRequest.getSubjects())
             subjectEntities.add(subjectService.getSubjectById(id));
         user.setSubjects(subjectEntities);
         return ResponseEntity.ok(userService.register(user));
@@ -94,7 +93,7 @@ public class UserController {
                                   @RequestHeader(name = "Authorization", required = false) UUID uuid) throws AccessIsForbiddenException {
         UserEntity userEditForm = new UserEntity(userParamsRequest);
         List<SubjectEntity> subjectEntities = new ArrayList<>();
-        for (Long subjectId: userParamsRequest.getSubject())
+        for (Long subjectId: userParamsRequest.getSubjects())
             subjectEntities.add(subjectService.getSubjectById(subjectId));
         userEditForm.setSubjects(subjectEntities);
         UserEntity userOfToken = tokenService.getUser(uuid);
