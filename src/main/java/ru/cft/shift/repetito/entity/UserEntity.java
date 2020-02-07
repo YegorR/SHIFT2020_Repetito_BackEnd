@@ -78,7 +78,7 @@ public class UserEntity {
         this.patronymic = userParamsRequest.getPatronymic();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
-        this.teacher = userParamsRequest.getIsTeacher();
+        this.teacher = userParamsRequest.getTeacher();
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
         this.price=userParamsRequest.getPrice();
