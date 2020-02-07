@@ -3,6 +3,20 @@ package ru.cft.shift.repetito.params.request;
 import java.util.List;
 
 public class UserParamsRequest {
+
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String patronymic;
+    private String faculty;
+    private int course;
+    private List<Long> subject;
+    private String degree;
+    private String about;
+    private Boolean isTeacher;
+    private int price;
+
     public String getEmail() {
         return email;
     }
@@ -59,11 +73,11 @@ public class UserParamsRequest {
         this.course = course;
     }
 
-    public List<String> getSubject() {
+    public List<Long> getSubject() {
         return subject;
     }
 
-    public void setSubject(List<String> subject) {
+    public void setSubject(List<Long> subject) {
         this.subject = subject;
     }
 
@@ -83,12 +97,12 @@ public class UserParamsRequest {
         this.about = about;
     }
 
-    public boolean getIsTeacher() {
+    public Boolean getIsTeacher() {
         return isTeacher;
     }
 
     public void setIsTeacher(Boolean teacher) {
-        this.isTeacher = teacher;
+        isTeacher = teacher;
     }
 
     public int getPrice() {
@@ -107,17 +121,5 @@ public class UserParamsRequest {
         this.photo = photo;
     }
 
-    private String email;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String patronymic;
-    private String faculty;
-    private int course;
-    private List<String> subject;
-    private String degree;
-    private String about;
-    private Boolean isTeacher;
-    private int price;
     private String photo;
 }

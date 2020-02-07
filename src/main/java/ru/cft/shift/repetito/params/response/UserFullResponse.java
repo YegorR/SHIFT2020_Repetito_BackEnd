@@ -1,8 +1,10 @@
 package ru.cft.shift.repetito.params.response;
 
+import ru.cft.shift.repetito.entity.SubjectEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 
 import java.util.List;
+import java.util.Set;
 
 public class UserFullResponse {
     public UserFullResponse(UserEntity user) {
@@ -15,9 +17,10 @@ public class UserFullResponse {
         this.course = user.getCourse();
         this.degree = user.getDegree();
         this.about = user.getAbout();
-        this.isTeacher = user.getTeacher();
+        this.isTeacher = user.getIsTeacher();
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
+        this.subjects=user.getSubjects();
     }
 
     private Long id;
@@ -32,6 +35,16 @@ public class UserFullResponse {
     private Boolean isTeacher;
     private int price;
     private float avgMark;
+    private List<SubjectEntity> subjects;
+
+    public List<SubjectEntity> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<SubjectEntity> subjects) {
+        this.subjects = subjects;
+    }
+
 
     public String getEmail() {
         return email;
