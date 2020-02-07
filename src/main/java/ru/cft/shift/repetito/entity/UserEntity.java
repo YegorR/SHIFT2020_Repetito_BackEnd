@@ -43,7 +43,7 @@ public class UserEntity {
     private String about;
 
     @Column(name = "teacher")
-    private Boolean teacher;
+    private Boolean isTeacher;
 
     @Column(name = "price", nullable = false)
     private int price;
@@ -75,11 +75,11 @@ public class UserEntity {
         this.lastName = userParamsRequest.getLastName();
         this.patronymic = userParamsRequest.getPatronymic();
         this.faculty = userParamsRequest.getFaculty();
-        this.course = userParamsRequest.getCourse();
-        this.teacher = userParamsRequest.getIsTeacher();
+        this.course = Integer.parseInt(userParamsRequest.getCourse());
+        this.isTeacher = Boolean.parseBoolean(userParamsRequest.getIsTeacher());
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
-        this.price = userParamsRequest.getPrice();
+        this.price = Integer.parseInt(userParamsRequest.getPrice());
     }
 
     public UserEntity Edit (UserParamsRequest userParamsRequest){
@@ -107,11 +107,13 @@ public class UserEntity {
         if (faculty != null)
             this.setFaculty(faculty);
 
-        long course = userParamsRequest.getCourse();
-        if (course != 0)
-            this.setCourse(course);
+        String  course = userParamsRequest.getCourse();
+        if (course != null)
+            this.setCourse(Integer.parseInt(course));
 
-        this.setIsTeacher(userParamsRequest.getIsTeacher());
+        String isTeacher = userParamsRequest.getIsTeacher();
+        if (course != null)
+            this.setIsTeacher(Boolean.parseBoolean(isTeacher));
 
         String degree = userParamsRequest.getDegree();
         if (degree != null)
@@ -121,9 +123,9 @@ public class UserEntity {
         if (about != null)
             this.setAbout(about);
 
-        int price = userParamsRequest.getPrice();
-        if (price != 0)
-            this.setPrice(price);
+        String price = userParamsRequest.getPrice();
+        if (price != null)
+            this.setPrice(Integer.parseInt(price));
         return this;
     }
 
@@ -211,11 +213,11 @@ public class UserEntity {
     }
 
     public Boolean getIsTeacher() {
-        return teacher;
+        return isTeacher;
     }
 
     public void setIsTeacher(Boolean teacher) {
-        this.teacher = teacher;
+        this.isTeacher = teacher;
     }
 
     public int getPrice() {
