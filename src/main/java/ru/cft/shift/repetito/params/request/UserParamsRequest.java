@@ -11,7 +11,7 @@ public class UserParamsRequest {
     private String patronymic;
     private String faculty;
     private int course;
-    private List<Long> subject;
+    private List<Long> subjects;
     private String degree;
     private String about;
     private Boolean isTeacher;
@@ -73,12 +73,12 @@ public class UserParamsRequest {
         this.course = course;
     }
 
-    public List<Long> getSubject() {
-        return subject;
+    public List<Long> getSubjects() {
+        return subjects;
     }
 
-    public void setSubject(List<Long> subject) {
-        this.subject = subject;
+    public void setSubjects(List<Long> subjects) {
+        this.subjects = subjects;
     }
 
     public String getDegree() {

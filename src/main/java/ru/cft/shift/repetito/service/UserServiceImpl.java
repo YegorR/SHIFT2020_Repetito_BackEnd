@@ -3,6 +3,7 @@ package ru.cft.shift.repetito.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.cft.shift.repetito.entity.UserEntity;
+import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
@@ -41,8 +42,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserSimpleResponse> getUserList(UserFilter userFilter) {
-        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(userFilter.getLimit(), userFilter.getOffset());
-        List<UserEntity> users = userRepository.findByFilters(userFilter.getAbout(), userFilter.getCourse(), userFilter.getFaculty(), userFilter.getDegree(), pageable);
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(userFilter.getOffset(), userFilter.getLimit());
+        List<UserEntity> users = userRepository.findByFilters(userFilter.getAbout(), userFilter.getCourse(), userFilter.getFaculty(), userFilter.getDegree(), userFilter.isTeacher(), userFilter.getSubject(), pageable);
         List<UserSimpleResponse> userResponse = new ArrayList<>();
         for (UserEntity u: users)
             userResponse.add(new UserSimpleResponse(u));
