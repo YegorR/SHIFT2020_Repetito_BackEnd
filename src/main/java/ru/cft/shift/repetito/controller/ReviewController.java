@@ -29,7 +29,9 @@ public class ReviewController {
             method=RequestMethod.GET,
             path="/user/{id}/review",
             produces = "application/json"
-    ) public ResponseEntity<?> get(@PathVariable (name="id") Long id,
+    )
+    //получить все обзоры на данного полльзователя
+    public ResponseEntity<?> get(@PathVariable (name="id") Long id,
                                    @RequestHeader(name = "Authorization", required = false) UUID uuid) throws NotAuthorisedException {
         if (tokenService.checkToken(uuid))
             return ResponseEntity.ok(reviewService.get(id));
@@ -41,7 +43,9 @@ public class ReviewController {
             path="/user/{id}/review",
             consumes="application/json",
             produces="application/json"
-    ) public ResponseEntity<?> add(
+    )
+    //создать обзор на пользователя
+    public ResponseEntity<?> add(
             @RequestBody ReviewRequest reviewRequest,
             @PathVariable (name="id") Long id,
             @RequestHeader(name = "Authorization", required = false) UUID uuid) throws NotAuthorisedException {
