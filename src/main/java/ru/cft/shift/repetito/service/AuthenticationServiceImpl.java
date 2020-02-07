@@ -20,13 +20,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public TokenEntity login(String email, String password){
             UserEntity userEntity = userService.getUserByEmailAndPassword(email, password);
             if (userEntity != null)
-                return tokenService.getToken(userEntity);
+                return tokenService.getNewToken(userEntity);
             else
                 return null;
     }
 
     @Override
-    public void logout(UUID uuid){
-        tokenService.deleteTokenByUuid(uuid);
+    public Boolean logout(UUID uuid){
+        if (tokenService.checkToken(uuid)) {
+            tokenService.deleteTokenByUuid(uuid);
+            return true;
+        } else return false;
+
     }
 }

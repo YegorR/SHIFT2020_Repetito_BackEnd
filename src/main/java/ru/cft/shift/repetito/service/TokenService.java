@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface TokenService {
     Boolean checkToken(UUID uuid);
 
-    TokenEntity getToken(UserEntity userEntity);
+    TokenEntity getNewToken(UserEntity userEntity);
 
     UserEntity getUser(UUID uuid);
 
