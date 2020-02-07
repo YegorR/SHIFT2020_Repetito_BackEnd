@@ -33,6 +33,11 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
+    public TokenEntity getTokenByUuid(UUID uuid){
+        return tokenRepository.findByUuid(uuid);
+    }
+
+    @Override
     public Boolean checkToken(UUID uuid) {
         return tokenRepository.existsByUuid(uuid);
     }

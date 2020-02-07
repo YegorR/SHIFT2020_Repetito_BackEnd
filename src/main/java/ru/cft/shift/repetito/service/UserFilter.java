@@ -3,9 +3,9 @@ package ru.cft.shift.repetito.service;
 import java.util.List;
 
 public class UserFilter {
-    private List<String> faculty;
+    private String faculty;
 
-    private List<Integer> courses;
+    private long course;
 
     private List<String> subject;
 
@@ -19,20 +19,20 @@ public class UserFilter {
 
     private int offset;
 
-    public List<String> getFaculty() {
+    public String getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(List<String> faculty) {
+    public void setFaculty(String faculty) {
         this.faculty = faculty;
     }
 
-    public List<Integer> getCourses() {
-        return courses;
+    public long getCourse() {
+        return course;
     }
 
-    public void setCourses(List<Integer> courses) {
-        this.courses = courses;
+    public void setCourse(long course) {
+        this.course = course;
     }
 
     public List<String> getSubject() {
