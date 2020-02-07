@@ -36,7 +36,7 @@ public class UserController {
             produces = "application/json"
     )
     public ResponseEntity<?> getList(
-            @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
+            @RequestParam(name = "onlyTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
             @RequestParam(name = "course", defaultValue = "0") long course,
             @RequestParam(name = "subject", defaultValue = "0") int subject,
