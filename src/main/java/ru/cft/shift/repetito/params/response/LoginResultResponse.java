@@ -1,13 +1,11 @@
 package ru.cft.shift.repetito.params.response;
 
-import ru.cft.shift.repetito.entity.UserEntity;
-
 import java.util.UUID;
 
 public class LoginResultResponse {
     private boolean successful;
 
-    private UUID uuid;
+    private UUID token;
 
     private UserFullResponse user;
 
@@ -19,12 +17,12 @@ public class LoginResultResponse {
         this.successful = successful;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getToken() {
+        return token;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setToken(UUID token) {
+        this.token = token;
     }
 
     public UserFullResponse getUser() {
