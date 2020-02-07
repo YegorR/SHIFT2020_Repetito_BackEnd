@@ -2,6 +2,7 @@ package ru.cft.shift.repetito.service;
 
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
+import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface UserService {
 
     UserEntity getUserById(Long id);
 
-    List<UserEntity> getUserList(UserFilter userFilter);
+    List<UserSimpleResponse> getUserList(UserFilter userFilter);
 
     UserEntity editUser(UserEntity user);
 

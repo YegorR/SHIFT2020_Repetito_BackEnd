@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.EntityResponse;
+import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.response.UserSimpleResponse;
@@ -39,8 +40,6 @@ public class UserController {
             @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "offset", defaultValue = "0") int offset
     ) {
-        //return userService.getUserList(isTeacher, faculty, course, subject, degree, search, limit, offset);
-        //return ResponseEntity.ok(new ArrayList<UserSimpleResponse>());
         UserFilter userFilter = new UserFilter();
         userFilter.setTeacher(isTeacher);
         userFilter.setFaculty(new ArrayList<>(Collections.singletonList(faculty)));
@@ -50,10 +49,7 @@ public class UserController {
         userFilter.setAbout(search);
         userFilter.setLimit(limit);
         userFilter.setOffset(offset);
-        List<UserEntity> users = userService.getUserList(userFilter);
-        return ResponseEntity.ok(users.stream()
-                .map(UserSimpleResponse::new)
-                .collect(Collectors.toCollection(ArrayList::new)));
+        return ResponseEntity.ok(userService.getUserList(userFilter));
     }
 
     @RequestMapping(
@@ -96,8 +92,9 @@ public class UserController {
         UserEntity userForDeleted = null;
         if (token!=null)
             userForDeleted = tokenService.getUser(token);
-        if (userForDeleted!=null && userForDeleted.getId()==id)
-        return ResponseEntity.ok(userService.deleteUser(id));
+        if (userForDeleted!=null && userForDeleted.getId()==id) {
+            return ResponseEntity.ok(userService.deleteUser(id));
+        }
         else return ResponseEntity.status(403).body("Forbidden");
     }
 }
