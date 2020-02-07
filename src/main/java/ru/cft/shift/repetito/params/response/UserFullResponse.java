@@ -5,8 +5,8 @@ import ru.cft.shift.repetito.entity.UserEntity;
 import java.util.List;
 
 public class UserFullResponse {
-    public UserFullResponse(UserEntity user){
-        this.email=user.getEmail();
+    public UserFullResponse(UserEntity user) {
+        this.email = user.getEmail();
         this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -15,9 +15,11 @@ public class UserFullResponse {
         this.course = user.getCourse();
         this.degree = user.getDegree();
         this.about = user.getAbout();
-        this.isTeacher=user.getTeacher();
+        this.isTeacher = user.getTeacher();
         this.price = user.getPrice();
+        this.avgMark = user.getAvgMark();
     }
+
     private Long id;
     private String email;
     private String firstName;
@@ -29,6 +31,7 @@ public class UserFullResponse {
     private String about;
     private Boolean isTeacher;
     private int price;
+    private float avgMark;
 
     public String getEmail() {
         return email;
@@ -37,6 +40,7 @@ public class UserFullResponse {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public Boolean getIsTeacher() {
         return isTeacher;
     }
@@ -108,11 +112,20 @@ public class UserFullResponse {
     public void setAbout(String about) {
         this.about = about;
     }
+
     public int getPrice() {
         return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public float getAvgMark() {
+        return avgMark;
+    }
+
+    public void setAvgMark(float avgMark) {
+        this.avgMark = avgMark;
     }
 }
