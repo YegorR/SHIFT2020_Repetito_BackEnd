@@ -75,11 +75,23 @@ public class UserEntity {
         this.lastName = userParamsRequest.getLastName();
         this.patronymic = userParamsRequest.getPatronymic();
         this.faculty = userParamsRequest.getFaculty();
-        this.course = Integer.parseInt(userParamsRequest.getCourse());
-        this.isTeacher = Boolean.parseBoolean(userParamsRequest.getIsTeacher());
         this.degree = userParamsRequest.getDegree();
         this.about = userParamsRequest.getAbout();
-        this.price = Integer.parseInt(userParamsRequest.getPrice());
+        String price = userParamsRequest.getPrice();
+
+        if (price != null)
+            this.price = Integer.parseInt(price);
+        else this.price = 0;
+
+        String course = userParamsRequest.getCourse();
+        if (course != null)
+            this.course = Integer.parseInt(course);
+        else this.course = 0;
+
+        String isTeacher = userParamsRequest.getIsTeacher();
+        if (isTeacher != null)
+            this.isTeacher = Boolean.parseBoolean(isTeacher);
+        else this.isTeacher = false;
     }
 
     public UserEntity Edit (UserParamsRequest userParamsRequest){
