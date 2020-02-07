@@ -104,6 +104,8 @@ public class UserController {
             userEditForm.setId(id);
             tokenEntity.setUser(userEditForm);
             userEditForm.setToken(tokenEntity);
+            userEditForm.setPassword(userOfId.getPassword());
+            userEditForm.setEmail(userOfId.getEmail());
             return ResponseEntity.ok(userService.editUser(userEditForm));
         } else throw new AccessIsForbiddenException(uuid.toString());
     }
