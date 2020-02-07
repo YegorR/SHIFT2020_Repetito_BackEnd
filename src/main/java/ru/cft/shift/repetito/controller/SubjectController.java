@@ -19,7 +19,9 @@ public class SubjectController {
             method= RequestMethod.GET,
             path="/subjects",
             produces = "application/json"
-    ) public ResponseEntity<?> get() {
+    )
+    //получить список всех предметов
+    public ResponseEntity<?> get() {
         return ResponseEntity.ok(subjectService.getAllSubjects());
     }
 }

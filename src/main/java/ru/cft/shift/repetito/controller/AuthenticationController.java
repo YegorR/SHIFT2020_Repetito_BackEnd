@@ -22,6 +22,7 @@ public class AuthenticationController {
             path = "/login",
             method = RequestMethod.POST
     )
+    //метод авторизации
     public ResponseEntity<?> login(@RequestBody LoginFormRequest loginFormRequest){
         TokenEntity tokenEntity = authenticationService.login(loginFormRequest.getEmail(), loginFormRequest.getPassword());
         LoginResultResponse loginResultResponse = new LoginResultResponse();
@@ -40,6 +41,7 @@ public class AuthenticationController {
             path = "/logout",
             method = RequestMethod.POST
     )
+    //метод для разлогирования
     public ResponseEntity<?> logout(@RequestHeader(name = "Authorization", required = false) UUID uuid) throws NotAuthorisedException {
         if (authenticationService.logout(uuid))
             return ResponseEntity.ok().body("You've logged out");
