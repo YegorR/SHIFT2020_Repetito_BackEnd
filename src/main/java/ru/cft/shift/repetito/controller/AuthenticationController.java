@@ -1,6 +1,7 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.TokenEntity;
@@ -18,12 +19,6 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationService authenticationService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TokenService tokenService;
 
     @RequestMapping(
             path = "/login",
@@ -47,7 +42,9 @@ public class AuthenticationController {
             path = "/logout",
             method = RequestMethod.POST
     )
-    public void logout(@RequestHeader("Authorization") UUID uuid){
-        authenticationService.logout(uuid);
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") UUID uuid){
+        if (authenticationService.logout(uuid))
+            return ResponseEntity.ok().body("You've logged out");
+        else return ResponseEntity.status(403).body("Forbidden");
     }
 }

@@ -35,12 +35,12 @@ public class UserParamsRequest {
         this.lastName = lastName;
     }
 
-    public String getParonym() {
-        return paronym;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setParonym(String paronym) {
-        this.paronym = paronym;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getFaculty() {
@@ -111,7 +111,7 @@ public class UserParamsRequest {
     private String password;
     private String firstName;
     private String lastName;
-    private String paronym;
+    private String patronymic;
     private String faculty;
     private int course;
     private List<String> subject;

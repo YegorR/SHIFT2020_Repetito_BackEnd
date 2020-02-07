@@ -3,6 +3,7 @@ package ru.cft.shift.repetito.entity;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
 
 import javax.persistence.*;
+import javax.validation.metadata.CascadableDescriptor;
 import java.util.List;
 import java.util.Set;
 
@@ -52,13 +53,13 @@ public class UserEntity {
     @Column(name = "avg_mark")
     private float avgMark;
 
-    @OneToMany(mappedBy = "reviewer")
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
     private List<ReviewEntity> writtenReviews;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<ReviewEntity> receivedReviews;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(
             name = "user_subject",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -74,7 +75,7 @@ public class UserEntity {
         this.password = userParamsRequest.getPassword();
         this.firstName = userParamsRequest.getFirstName();
         this.lastName = userParamsRequest.getLastName();
-        this.patronymic = userParamsRequest.getParonym();
+        this.patronymic = userParamsRequest.getPatronymic();
         this.faculty = userParamsRequest.getFaculty();
         this.course = userParamsRequest.getCourse();
         this.teacher = userParamsRequest.getIsTeacher();

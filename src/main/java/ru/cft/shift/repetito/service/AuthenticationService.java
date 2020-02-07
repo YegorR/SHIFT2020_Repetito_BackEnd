@@ -10,5 +10,5 @@ public interface AuthenticationService {
 
     TokenEntity login(String email, String password);
 
-    void logout(UUID uuid);
+    Boolean logout(UUID uuid);
 }

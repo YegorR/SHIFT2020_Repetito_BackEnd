@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
+import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +17,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserEntity register(UserEntity user) {
-        return userRepository.save(user);
+    public UserFullResponse register(UserEntity user) {
+        userRepository.save(user);
+        return new UserFullResponse(user);
     }
 
     @Override
@@ -37,13 +40,17 @@ public class UserServiceImpl implements UserService {
     }*/
 
     @Override
-    public List<UserEntity> getUserList(UserFilter userFilter) {
-        UserSpecification spec = new UserSpecification(new SearchCriteria("teacher", ":", userFilter.isTeacher()));
-        return userRepository.findAll(spec);
+    public List<UserSimpleResponse> getUserList(UserFilter userFilter) {
+        //UserSpecification spec = new UserSpecification(new SearchCriteria("teacher", ":", userFilter.isTeacher()));
+        List<UserEntity> users = userRepository.findAll();
+        List<UserSimpleResponse> userResponse = new ArrayList<>();
+        for (UserEntity u: users)
+            userResponse.add(new UserSimpleResponse(u));
+        return userResponse;
     }
 
     @Override
-    public UserEntity editUser(UserEntity user) {
+    public UserFullResponse editUser(UserEntity user) {
         return register(user);
     }
 
