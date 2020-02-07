@@ -10,12 +10,12 @@ public class UserParamsRequest {
     private String lastName;
     private String patronymic;
     private String faculty;
-    private int course;
+    private String course;
     private List<Long> subjects;
     private String degree;
     private String about;
-    private Boolean isTeacher;
-    private int price;
+    private String isTeacher;
+    private String price;
 
     public String getEmail() {
         return email;
@@ -65,11 +65,11 @@ public class UserParamsRequest {
         this.faculty = faculty;
     }
 
-    public int getCourse() {
+    public String  getCourse() {
         return course;
     }
 
-    public void setCourse(int course) {
+    public void setCourse(String course) {
         this.course = course;
     }
 
@@ -97,19 +97,19 @@ public class UserParamsRequest {
         this.about = about;
     }
 
-    public Boolean getIsTeacher() {
+    public String getIsTeacher() {
         return isTeacher;
     }
 
-    public void setIsTeacher(Boolean teacher) {
+    public void setIsTeacher(String teacher) {
         isTeacher = teacher;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
