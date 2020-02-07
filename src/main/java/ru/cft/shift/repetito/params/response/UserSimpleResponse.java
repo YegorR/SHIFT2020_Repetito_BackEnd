@@ -10,6 +10,7 @@ public class UserSimpleResponse {
         this.patronymic = user.getPatronymic();
         this.price = user.getPrice();
         this.avgMark = user.getAvgMark();
+        this.about = user.getAbout();
     }
 
     private Long id;
@@ -18,6 +19,7 @@ public class UserSimpleResponse {
     private String patronymic;
     private int price;
     private float avgMark;
+    private String about;
 
     public Long getId() {
         return id;
@@ -65,5 +67,13 @@ public class UserSimpleResponse {
 
     public void setAvgMark(float avgMark) {
         this.avgMark = avgMark;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }
