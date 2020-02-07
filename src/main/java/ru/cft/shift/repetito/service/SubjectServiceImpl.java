@@ -8,17 +8,27 @@ import ru.cft.shift.repetito.repository.SubjectRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     private SubjectRepository subjectRepository;
-
+    @Override
     public List<SubjectResponse> getAllSubjects(){
         List<SubjectEntity> subjects = subjectRepository.findAll();
         List<SubjectResponse> subjectResponse = new ArrayList<>();
         for (SubjectEntity r:subjects)
             subjectResponse.add(new SubjectResponse(r));
         return subjectResponse;
+    }
+
+    @Override
+    public SubjectEntity getSubjectById(Long id){
+        Optional<SubjectEntity> subjectEntityOptional = subjectRepository.findById(id);
+        if (subjectEntityOptional.isPresent())
+            return subjectEntityOptional.get();
+        else return null;
     }
 }

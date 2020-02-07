@@ -9,6 +9,7 @@ import ru.cft.shift.repetito.exception.AccessIsForbiddenException;
 import ru.cft.shift.repetito.exception.NotAuthorisedException;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
+import ru.cft.shift.repetito.service.SubjectService;
 import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserFilter;
 import ru.cft.shift.repetito.service.UserService;
@@ -25,11 +26,13 @@ public class UserController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private SubjectService subjectService;
+
     @RequestMapping(
             method = RequestMethod.GET,
             produces = "application/json"
     )
-    //получить список пользователей по фильтру
     public ResponseEntity<?> getList(
             @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
@@ -57,7 +60,6 @@ public class UserController {
             path = "/{id}",
             produces = "application/json"
     )
-    //получить данные пользователя
     public ResponseEntity<?> get(@PathVariable(name = "id") Long id,
                                  @RequestHeader(name = "Authorization", required = false) UUID uuid) throws NotAuthorisedException {
         if (tokenService.checkToken(uuid)) {
@@ -71,10 +73,10 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    //зарегистрировать пользователя
     public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
-
+        for (Long id: userParamsRequest.getSubject())
+            user.getSubjects().add(subjectService.getSubjectById(id));
         return ResponseEntity.ok(userService.register(user));
     }
 
@@ -84,10 +86,11 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    //метод изменения данных о пользователе
     public ResponseEntity<?> edit(@RequestBody UserParamsRequest userParamsRequest, @PathVariable(name = "id") Long id,
                                   @RequestHeader(name = "Authorization", required = false) UUID uuid) throws AccessIsForbiddenException {
         UserEntity userEditForm = new UserEntity(userParamsRequest);
+        for (Long subjectId: userParamsRequest.getSubject())
+            userEditForm.getSubjects().add(subjectService.getSubjectById(subjectId));
         UserEntity userOfToken = tokenService.getUser(uuid);
         UserEntity userOfId = userService.getUserById(id);
         if (userOfToken != null && userOfId != null && userOfId == userOfToken){
@@ -103,9 +106,7 @@ public class UserController {
             method=RequestMethod.DELETE,
             path="/{id}",
             produces="application/json"
-    )
-    //Удаление пользователя
-    public ResponseEntity<?> delete(@PathVariable(name="id") Long id,
+    ) public ResponseEntity<?> delete(@PathVariable(name="id") Long id,
                                       @RequestHeader (value = "Authorization", required = false) UUID uuid) throws AccessIsForbiddenException {
         UserEntity userOfToken =  tokenService.getUser(uuid);
         if (userOfToken != null && userOfToken.getId() == id) {
