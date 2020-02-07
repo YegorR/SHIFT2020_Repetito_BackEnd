@@ -19,7 +19,4 @@ public interface UserService {
     UserEntity getUserByEmailAndPassword(String email, String password);
 
     boolean deleteUser(Long id);
-
-    UserEntity UserEntityEdit (UserParamsRequest userParamsRequest, UserEntity oldUser);
-
 }

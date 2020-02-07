@@ -78,9 +78,9 @@ public class UserController {
     public ResponseEntity<?> add(@RequestBody UserParamsRequest userParamsRequest) {
         UserEntity user = new UserEntity(userParamsRequest);
         List<SubjectEntity> subjectEntities = new ArrayList<>();
-        List<Long> userParamsRequestSabjects = userParamsRequest.getSubject();
-        if (userParamsRequestSabjects != null) {
-            for (Long id : userParamsRequest.getSubject())
+        List<Long> userParamsRequestSubjects = userParamsRequest.getSubjects();
+        if (userParamsRequestSubjects != null) {
+            for (Long id : userParamsRequest.getSubjects())
                 subjectEntities.add(subjectService.getSubjectById(id));
             user.setSubjects(subjectEntities);
         }
@@ -98,12 +98,12 @@ public class UserController {
         UserEntity userOfToken = tokenService.getUser(uuid);
         UserEntity userOfId = userService.getUserById(id);
         if (userOfToken != null && userOfId != null && userOfId == userOfToken){
-            UserEntity userEditForm = userService.UserEntityEdit(userParamsRequest, userOfId);
+            UserEntity userEditForm = userOfId.Edit(userParamsRequest);
             TokenEntity tokenEntity = userOfId.getToken();
             List<SubjectEntity> subjectEntities = new ArrayList<>();
-            List<Long> userParamsRequestSabjects = userParamsRequest.getSubject();
-            if (userParamsRequestSabjects != null) {
-                for (Long subjectId : userParamsRequest.getSubject())
+            List<Long> userParamsRequestSubjects = userParamsRequest.getSubjects();
+            if (userParamsRequestSubjects != null) {
+                for (Long subjectId : userParamsRequestSubjects)
                     subjectEntities.add(subjectService.getSubjectById(subjectId));
                 userEditForm.setSubjects(subjectEntities);
             }

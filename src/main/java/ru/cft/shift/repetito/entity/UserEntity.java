@@ -82,6 +82,51 @@ public class UserEntity {
         this.price = userParamsRequest.getPrice();
     }
 
+    public UserEntity Edit (UserParamsRequest userParamsRequest){
+        String email = userParamsRequest.getEmail();
+        if (email != null)
+            this.setEmail(email);
+
+        String password = userParamsRequest.getPassword();
+        if (password != null)
+            this.setPassword(password);
+
+        String firstName = userParamsRequest.getFirstName();
+        if (firstName != null)
+            this.setFirstName(firstName);
+
+        String lastName = userParamsRequest.getLastName();
+        if (lastName != null)
+            this.setLastName(lastName);
+
+        String patronymic = userParamsRequest.getPatronymic();
+        if (patronymic != null)
+            this.setPatronymic(patronymic);
+
+        String faculty = userParamsRequest.getFaculty();
+        if (faculty != null)
+            this.setFaculty(faculty);
+
+        long course = userParamsRequest.getCourse();
+        if (course != 0)
+            this.setCourse(course);
+
+        this.setIsTeacher(userParamsRequest.getIsTeacher());
+
+        String degree = userParamsRequest.getDegree();
+        if (degree != null)
+            this.setDegree(degree);
+
+        String about = userParamsRequest.getAbout();
+        if (about != null)
+            this.setAbout(about);
+
+        int price = userParamsRequest.getPrice();
+        if (price != 0)
+            this.setPrice(price);
+        return this;
+    }
+
     public UserEntity() {
     }
 
