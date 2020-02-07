@@ -7,7 +7,6 @@ import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.repository.TokenRepository;
 import ru.cft.shift.repetito.repository.UserProjection;
-import sun.tools.jstat.Token;
 
 import java.util.UUID;
 

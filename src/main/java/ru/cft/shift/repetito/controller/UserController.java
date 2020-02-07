@@ -3,20 +3,17 @@ package ru.cft.shift.repetito.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.EntityResponse;
 import ru.cft.shift.repetito.entity.TokenEntity;
 import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.exception.AccessIsForbiddenException;
 import ru.cft.shift.repetito.exception.NotAuthorisedException;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
-import ru.cft.shift.repetito.params.response.UserSimpleResponse;
 import ru.cft.shift.repetito.params.request.UserParamsRequest;
 import ru.cft.shift.repetito.service.TokenService;
 import ru.cft.shift.repetito.service.UserFilter;
 import ru.cft.shift.repetito.service.UserService;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -35,7 +32,7 @@ public class UserController {
     public ResponseEntity<?> getList(
             @RequestParam(name = "isTeacher", defaultValue = "false") Boolean isTeacher,
             @RequestParam(name = "faculty", defaultValue = "null") String faculty,
-            @RequestParam(name = "course", defaultValue = "1") int course,
+            @RequestParam(name = "course", defaultValue = "0") long course,
             @RequestParam(name = "subject", defaultValue = "null") List<String> subject,
             @RequestParam(name = "degree", defaultValue = "null") String degree,
             @RequestParam(name = "search", defaultValue = "null") String search,
@@ -44,8 +41,8 @@ public class UserController {
     ) {
         UserFilter userFilter = new UserFilter();
         userFilter.setTeacher(isTeacher);
-        userFilter.setFaculty(new ArrayList<>(Collections.singletonList(faculty)));
-        userFilter.setCourses(new ArrayList<>(Collections.singletonList(course)));
+        userFilter.setFaculty(faculty);
+        userFilter.setCourse(course);
         userFilter.setSubject(subject);
         userFilter.setDegree(degree);
         userFilter.setAbout(search);

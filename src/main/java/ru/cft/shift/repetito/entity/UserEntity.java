@@ -36,7 +36,7 @@ public class UserEntity {
     private String faculty;
 
     @Column(name = "course")
-    private int course;
+    private long course;
 
     @Column(name = "degree")
     private String degree;
@@ -143,11 +143,11 @@ public class UserEntity {
         this.faculty = faculty;
     }
 
-    public int getCourse() {
+    public long getCourse() {
         return course;
     }
 
-    public void setCourse(int course) {
+    public void setCourse(long course) {
         this.course = course;
     }
 

@@ -26,7 +26,7 @@ public class UserFullResponse {
     private String lastName;
     private String patronymic;
     private String faculty;
-    private int course;
+    private long course;
     private String degree;
     private String about;
     private Boolean isTeacher;
@@ -89,11 +89,11 @@ public class UserFullResponse {
         this.faculty = faculty;
     }
 
-    public int getCourse() {
+    public long getCourse() {
         return course;
     }
 
-    public void setCourse(int course) {
+    public void setCourse(long course) {
         this.course = course;
     }
 

@@ -41,8 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserSimpleResponse> getUserList(UserFilter userFilter) {
-        //UserSpecification spec = new UserSpecification(new SearchCriteria("teacher", ":", userFilter.isTeacher()));
-        List<UserEntity> users = userRepository.findAll();
+        List<UserEntity> users = userRepository.findByFilters(userFilter.getAbout(), userFilter.getCourse(), userFilter.getFaculty(), userFilter.getDegree());
         List<UserSimpleResponse> userResponse = new ArrayList<>();
         for (UserEntity u: users)
             userResponse.add(new UserSimpleResponse(u));

@@ -1,18 +1,15 @@
 package ru.cft.shift.repetito.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cft.shift.repetito.entity.TokenEntity;
-import ru.cft.shift.repetito.entity.UserEntity;
 import ru.cft.shift.repetito.exception.NotAuthorisedException;
 import ru.cft.shift.repetito.params.request.LoginFormRequest;
 import ru.cft.shift.repetito.params.response.LoginResultResponse;
 import ru.cft.shift.repetito.params.response.UserFullResponse;
 import ru.cft.shift.repetito.service.AuthenticationService;
-import ru.cft.shift.repetito.service.TokenService;
-import ru.cft.shift.repetito.service.UserService;
+
 import java.util.UUID;
 
 @RestController
@@ -31,11 +28,11 @@ public class AuthenticationController {
         if (tokenEntity != null) {
             loginResultResponse.setSuccessful(true);
             loginResultResponse.setUser(new UserFullResponse(tokenEntity.getUser()));
-            loginResultResponse.setUuid(tokenEntity.getUuid());
+            loginResultResponse.setToken(tokenEntity.getUuid());
         } else {
             loginResultResponse.setSuccessful(false);
             loginResultResponse.setUser(null);
-            loginResultResponse.setUuid(null);
+            loginResultResponse.setToken(null);
         }
         return ResponseEntity.ok(loginResultResponse);
     }
